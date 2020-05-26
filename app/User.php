@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Friend;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +13,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    public const PROFILE_PICTURE = 'profile-picture.png';
+    const DEFAULT_PROFILE_PICTURE = 'assets/default/images/profile-picture.png';
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +41,25 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [
+        'image'
+    ];
+
+    /**
+     * Get user profile picture.
+     *
+     * @return MorphOne
+     */
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

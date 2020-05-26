@@ -3,33 +3,51 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Str;
+use Faker\Factory as Faker;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Testing\TestResponse;
 
 class RegisterTest extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * Should register new user account.
      */
-    public function testRegisterUserWithValidData()
+    public function testRegister()
     {
-        $playload = [
-            'username' => 'test' . STR::random(10),
-            'email' => STR::random(10) . '@gmail.com',
-            'password' => 'test1234',
-            'password_confirmation' => 'test1234'
+        $data = [
+            'first_name' => ($faker = Faker::create())->firstName,
+            'last_name' => $faker->lastName,
+            'email' => $faker->unique()->email,
+            'password' => $password = $faker->password(8, 20),
+            'password_confirmation' => $password
         ];
-        
-        $response = $this->withHeaders([
-            'Accept' => 'application/json'
-        ])
-        ->json('post', 'api/v2/register', $playload);
-        
-        //$response->dump();
 
-        $response->assertStatus(500);
+        $this->register($data)
+            ->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Should try to register with empty data.
+     */
+    public function testRegisterWithEmptyData()
+    {
+        $this->register([])
+            ->assertJsonStructure([
+                'message',
+                'errors' => [
+                    'first_name', 'last_name', 'email', 'password'
+                ]
+            ]);
+    }
+
+    /**
+     * Make request to register user account.
+     *
+     * @param array $data
+     * @return TestResponse
+     */
+    protected function register(array $data): TestResponse
+    {
+        return $this->json('POST', 'register', $data);
     }
 }

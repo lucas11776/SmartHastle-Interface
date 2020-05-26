@@ -4,32 +4,65 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Str;
+use Faker\Factory as Faker;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Testing\TestResponse;
 
 class LoginUserTest extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * Should login user and redirect to redirect home page
      */
-    public function testExample()
+    public function testLogin()
     {
-        $user = factory(User::class)->create();
-        
-        $playload = [];
-        
-        $response = $this>actingAs($user)
-        ->withHeaders([
-            'Accept' => 'application/json'
-        ])
-        ->json('post', 'api/v2/login', $playload);
-        
-        $response->dump();
-        
-        $response->assertStatus(401);
-        
-        
+        $credentials = [
+            'email' => factory(User::class)->create()->email,
+            'password' => 'password'
+        ];
+
+        $this->login($credentials)
+            ->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Should try to login with empty data.
+     */
+    public function testLoginWithEmptyData()
+    {
+        $this->login([])
+            ->assertJsonStructure([
+                'message',
+                'errors' => [
+                    'email', 'password'
+                ]
+            ]);
+    }
+
+    /**
+     * Should try to login with email that does not exist.
+     */
+    public function testLoginWithNonExistingEmail()
+    {
+        $credentials = [
+            'email' => Faker::create()->unique()->email,
+            'password' => 'password'
+        ];
+
+        $this->login($credentials)
+            ->assertJsonStructure([
+                'message',
+                'errors' => ['email']
+            ]);
+    }
+
+    /**
+     * Make request to register user in application.
+     *
+     * @param array $credentials
+     * @return TestResponse
+     */
+    protected function login(array $credentials): TestResponse
+    {
+        return $this->json('POST', 'login', $credentials);
     }
 }
