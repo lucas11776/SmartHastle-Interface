@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>register.blade.php</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #e8bf6a;}
+.s4 { color: #bababa;}
+.s5 { color: #a5c261;}
+.s6 { color: #a9b7c6;}
+.s7 { color: #808080;}
+.s8 { color: #a9b7c6;}
+.s9 { color: #a9b7c6;}
+.s10 { color: #9876aa;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+register.blade.php</font>
+</center></td></tr></table>
+<pre><span class="s0">@extends(</span><span class="s2">'layouts.authentication'</span><span class="s0">)</span>
+
+<span class="s0">@section(</span><span class="s2">'content'</span><span class="s0">)</span>
+    <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;row justify-content-center&quot;</span><span class="s3">&gt;</span>
+        <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;card o-hidden border-0 shadow-lg col-sm-6 col-md-4&quot;</span><span class="s3">&gt;</span>
+            <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;card-body p-0&quot;</span><span class="s3">&gt;</span>
+                <span class="s7">&lt;!-- Nested Row within Card Body --&gt;</span>
+                <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;row&quot;</span><span class="s3">&gt;</span>
+                    <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;col-12&quot;</span><span class="s3">&gt;</span>
+                        <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;p-2 pt-4 pb-4&quot;</span><span class="s3">&gt;</span>
+                            <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;text-center&quot;</span><span class="s3">&gt;</span>
+                                <span class="s3">&lt;h1 </span><span class="s4">class</span><span class="s5">=&quot;h4 text-gray-900 mb-4&quot;</span><span class="s3">&gt;</span><span class="s8">Create an Account!</span><span class="s3">&lt;/h1&gt;</span>
+                            <span class="s3">&lt;/div&gt;</span>
+                            <span class="s3">&lt;form </span><span class="s4">class</span><span class="s5">=&quot;user&quot; </span><span class="s4">method</span><span class="s5">=&quot;POST&quot; </span><span class="s4">action</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">route</span><span class="s1">(</span><span class="s2">'register'</span><span class="s1">) }}</span><span class="s5">&quot;</span><span class="s3">&gt;</span>
+                                <span class="s0">@csrf</span>
+                                <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;form-group row&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;col-sm-6 mb-3 mb-sm-0&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s3">&lt;input </span><span class="s4">id</span><span class="s5">=&quot;first_name&quot;</span>
+                                               <span class="s4">type</span><span class="s5">=&quot;text&quot;</span>
+                                               <span class="s4">class</span><span class="s5">=&quot;form-control form-control-user </span><span class="s0">@error(</span><span class="s2">'first_name'</span><span class="s0">) </span><span class="s5">is-invalid </span><span class="s0">@enderror</span><span class="s5">&quot;</span>
+                                               <span class="s4">name</span><span class="s5">=&quot;first_name&quot;</span>
+                                               <span class="s4">value</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">old</span><span class="s1">(</span><span class="s2">'first_name'</span><span class="s1">) }}</span><span class="s5">&quot;</span>
+                                               <span class="s4">required</span>
+                                               <span class="s4">placeholder</span><span class="s5">=&quot;Name.&quot;</span>
+                                               <span class="s4">autocomplete</span><span class="s5">=&quot;first_name&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s0">@error(</span><span class="s2">'first_name'</span><span class="s0">)</span>
+                                        <span class="s3">&lt;span </span><span class="s4">class</span><span class="s5">=&quot;invalid-feedback&quot;</span>
+                                              <span class="s4">role</span><span class="s5">=&quot;alert&quot;</span><span class="s3">&gt;</span>
+                                            <span class="s3">&lt;strong&gt;</span><span class="s1">{{ </span><span class="s10">$message </span><span class="s1">}}</span><span class="s3">&lt;/strong&gt;</span>
+                                        <span class="s3">&lt;/span&gt;</span>
+                                        <span class="s0">@enderror</span>
+                                    <span class="s3">&lt;/div&gt;</span>
+                                    <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;col-sm-6&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s3">&lt;input </span><span class="s4">id</span><span class="s5">=&quot;last_name&quot;</span>
+                                               <span class="s4">type</span><span class="s5">=&quot;text&quot;</span>
+                                               <span class="s4">class</span><span class="s5">=&quot;form-control form-control-user </span><span class="s0">@error(</span><span class="s2">'last_name'</span><span class="s0">) </span><span class="s5">is-invalid </span><span class="s0">@enderror</span><span class="s5">&quot;</span>
+                                               <span class="s4">name</span><span class="s5">=&quot;last_name&quot;</span>
+                                               <span class="s4">value</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">old</span><span class="s1">(</span><span class="s2">'last_name'</span><span class="s1">) }}</span><span class="s5">&quot;</span>
+                                               <span class="s4">required</span>
+                                               <span class="s4">placeholder</span><span class="s5">=&quot;Surname.&quot;</span>
+                                               <span class="s4">autocomplete</span><span class="s5">=&quot;last_name&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s0">@error(</span><span class="s2">'last_name'</span><span class="s0">)</span>
+                                        <span class="s3">&lt;span </span><span class="s4">class</span><span class="s5">=&quot;invalid-feedback&quot;</span>
+                                              <span class="s4">role</span><span class="s5">=&quot;alert&quot;</span><span class="s3">&gt;</span>
+                                            <span class="s3">&lt;strong&gt;</span><span class="s1">{{ </span><span class="s10">$message </span><span class="s1">}}</span><span class="s3">&lt;/strong&gt;</span>
+                                        <span class="s3">&lt;/span&gt;</span>
+                                        <span class="s0">@enderror</span>
+                                    <span class="s3">&lt;/div&gt;</span>
+                                <span class="s3">&lt;/div&gt;</span>
+                                <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;form-group&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s3">&lt;input </span><span class="s4">id</span><span class="s5">=&quot;email&quot;</span>
+                                           <span class="s4">type</span><span class="s5">=&quot;text&quot;</span>
+                                           <span class="s4">class</span><span class="s5">=&quot;form-control form-control-user </span><span class="s0">@error(</span><span class="s2">'email'</span><span class="s0">) </span><span class="s5">is-invalid </span><span class="s0">@enderror</span><span class="s5">&quot;</span>
+                                           <span class="s4">name</span><span class="s5">=&quot;email&quot;</span>
+                                           <span class="s4">value</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">old</span><span class="s1">(</span><span class="s2">'email'</span><span class="s1">) }}</span><span class="s5">&quot;</span>
+                                           <span class="s4">required</span>
+                                           <span class="s4">placeholder</span><span class="s5">=&quot;Surname.&quot;</span>
+                                           <span class="s4">autocomplete</span><span class="s5">=&quot;email&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s0">@error(</span><span class="s2">'email'</span><span class="s0">)</span>
+                                    <span class="s3">&lt;span </span><span class="s4">class</span><span class="s5">=&quot;invalid-feedback&quot;</span>
+                                          <span class="s4">role</span><span class="s5">=&quot;alert&quot;</span><span class="s3">&gt;</span>
+                                            <span class="s3">&lt;strong&gt;</span><span class="s1">{{ </span><span class="s10">$message </span><span class="s1">}}</span><span class="s3">&lt;/strong&gt;</span>
+                                        <span class="s3">&lt;/span&gt;</span>
+                                    <span class="s0">@enderror</span>
+                                <span class="s3">&lt;/div&gt;</span>
+                                <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;form-group row&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;col-sm-6 mb-3 mb-sm-0&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s3">&lt;input </span><span class="s4">id</span><span class="s5">=&quot;password&quot;</span>
+                                               <span class="s4">type</span><span class="s5">=&quot;password&quot;</span>
+                                               <span class="s4">class</span><span class="s5">=&quot;form-control form-control-user </span><span class="s0">@error(</span><span class="s2">'password'</span><span class="s0">) </span><span class="s5">is-invalid </span><span class="s0">@enderror</span><span class="s5">&quot;</span>
+                                               <span class="s4">name</span><span class="s5">=&quot;password&quot;</span>
+                                               <span class="s4">value</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">old</span><span class="s1">(</span><span class="s2">'password'</span><span class="s1">) }}</span><span class="s5">&quot;</span>
+                                               <span class="s4">required</span>
+                                               <span class="s4">placeholder</span><span class="s5">=&quot;Password.&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s0">@error(</span><span class="s2">'password'</span><span class="s0">)</span>
+                                        <span class="s3">&lt;span </span><span class="s4">class</span><span class="s5">=&quot;invalid-feedback&quot;</span>
+                                              <span class="s4">role</span><span class="s5">=&quot;alert&quot;</span><span class="s3">&gt;</span>
+                                            <span class="s3">&lt;strong&gt;</span><span class="s1">{{ </span><span class="s10">$message </span><span class="s1">}}</span><span class="s3">&lt;/strong&gt;</span>
+                                        <span class="s3">&lt;/span&gt;</span>
+                                        <span class="s0">@enderror</span>
+                                    <span class="s3">&lt;/div&gt;</span>
+                                    <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;col-sm-6&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s3">&lt;input </span><span class="s4">id</span><span class="s5">=&quot;password_confirmation&quot;</span>
+                                               <span class="s4">type</span><span class="s5">=&quot;password&quot;</span>
+                                               <span class="s4">class</span><span class="s5">=&quot;form-control form-control-user </span><span class="s0">@error(</span><span class="s2">'password_confirmation'</span><span class="s0">) </span><span class="s5">is-invalid </span><span class="s0">@enderror</span><span class="s5">&quot;</span>
+                                               <span class="s4">name</span><span class="s5">=&quot;password_confirmation&quot;</span>
+                                               <span class="s4">value</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">old</span><span class="s1">(</span><span class="s2">'password_confirmation'</span><span class="s1">) }}</span><span class="s5">&quot;</span>
+                                               <span class="s4">required</span>
+                                               <span class="s4">placeholder</span><span class="s5">=&quot;Password confirmation.&quot;</span><span class="s3">&gt;</span>
+                                        <span class="s0">@error(</span><span class="s2">'password_confirmation'</span><span class="s0">)</span>
+                                        <span class="s3">&lt;span </span><span class="s4">class</span><span class="s5">=&quot;invalid-feedback&quot;</span>
+                                              <span class="s4">role</span><span class="s5">=&quot;alert&quot;</span><span class="s3">&gt;</span>
+                                            <span class="s3">&lt;strong&gt;</span><span class="s1">{{ </span><span class="s10">$message </span><span class="s1">}}</span><span class="s3">&lt;/strong&gt;</span>
+                                        <span class="s3">&lt;/span&gt;</span>
+                                        <span class="s0">@enderror</span>
+                                    <span class="s3">&lt;/div&gt;</span>
+                                <span class="s3">&lt;/div&gt;</span>
+                                <span class="s3">&lt;button </span><span class="s4">type</span><span class="s5">=&quot;submit&quot;</span>
+                                        <span class="s4">class</span><span class="s5">=&quot;btn btn-primary btn-user btn-block&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s8">Register Account</span>
+                                <span class="s3">&lt;/button&gt;</span>
+                            <span class="s3">&lt;/form&gt;</span>
+                            <span class="s3">&lt;hr&gt;</span>
+                            <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;text-center&quot;</span><span class="s3">&gt;</span>
+                                <span class="s3">&lt;a </span><span class="s4">class</span><span class="s5">=&quot;small&quot;</span>
+                                   <span class="s4">href</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">url</span><span class="s1">(</span><span class="s2">'forgot/password'</span><span class="s1">)  }}</span><span class="s5">&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s8">Forgot Password?</span>
+                                <span class="s3">&lt;/a&gt;</span>
+                            <span class="s3">&lt;/div&gt;</span>
+                            <span class="s3">&lt;div </span><span class="s4">class</span><span class="s5">=&quot;text-center&quot;</span><span class="s3">&gt;</span>
+                                <span class="s3">&lt;a </span><span class="s4">class</span><span class="s5">=&quot;small&quot;</span>
+                                   <span class="s4">href</span><span class="s5">=&quot;</span><span class="s1">{{ </span><span class="s9">url</span><span class="s1">(</span><span class="s2">'login'</span><span class="s1">) }}</span><span class="s5">&quot;</span><span class="s3">&gt;</span>
+                                    <span class="s8">Already have an account? Login!</span>
+                                <span class="s3">&lt;/a&gt;</span>
+                            <span class="s3">&lt;/div&gt;</span>
+                        <span class="s3">&lt;/div&gt;</span>
+                    <span class="s3">&lt;/div&gt;</span>
+                <span class="s3">&lt;/div&gt;</span>
+            <span class="s3">&lt;/div&gt;</span>
+        <span class="s3">&lt;/div&gt;</span>
+
+    <span class="s3">&lt;/div&gt;</span>
+<span class="s0">@endsection</span>
+</pre>
+</body>
+</html>
