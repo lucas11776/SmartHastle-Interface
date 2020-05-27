@@ -15,10 +15,7 @@ class LoginUserTest extends TestCase
      */
     public function testLogin()
     {
-        $credentials = [
-            'email' => factory(User::class)->create()->email,
-            'password' => 'password'
-        ];
+        $credentials = $this->LoginMock();
 
         $this->login($credentials)
             ->assertRedirect(RouteServiceProvider::HOME);

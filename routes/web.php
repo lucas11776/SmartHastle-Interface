@@ -20,4 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::prefix('category')->group(function(){
+    Route::post('', 'CategoryController@Store');
+    Route::delete('{category}', 'CategoryController@Destroy');
+    Route::patch('{category}', 'CategoryController@Update');
+});
+
 

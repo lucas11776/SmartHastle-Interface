@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Faker\Factory as Faker;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\TestResponse;
 
@@ -14,13 +13,7 @@ class RegisterTest extends TestCase
      */
     public function testRegister()
     {
-        $data = [
-            'first_name' => ($faker = Faker::create())->firstName,
-            'last_name' => $faker->lastName,
-            'email' => $faker->unique()->email,
-            'password' => $password = $faker->password(8, 20),
-            'password_confirmation' => $password
-        ];
+        $data = $this->RegisterMock();
 
         $this->register($data)
             ->assertRedirect(RouteServiceProvider::HOME);

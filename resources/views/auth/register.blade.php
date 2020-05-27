@@ -1,8 +1,9 @@
 @extends('layouts.authentication')
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="card o-hidden border-0 shadow-lg col-sm-6 col-md-4">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="card o-hidden border-0 shadow-lg col-sm-6 col-md-4 mt-5 mb-5">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
@@ -118,6 +119,6 @@
                 </div>
             </div>
         </div>
-
+        </div>
     </div>
 @endsection
