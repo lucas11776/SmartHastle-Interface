@@ -13,17 +13,22 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('home');
 });
 
 Auth::routes();
 
-Route::prefix('category')->group(function(){
+Route::prefix('category')->group(function () {
     Route::post('', 'CategoryController@Store');
     Route::delete('{category}', 'CategoryController@Destroy');
     Route::patch('{category}', 'CategoryController@Update');
+});
+
+Route::prefix('product')->group(function () {
+    Route::post('', 'ProductController@Store');
+    Route::patch('{product}', 'ProductController@Update');
+    Route::delete('{product}', 'ProductController@Destroy');
 });
 
 

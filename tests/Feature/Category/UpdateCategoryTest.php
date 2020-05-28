@@ -18,7 +18,7 @@ class UpdateCategoryTest extends TestCase
         $data = ['name' => Faker::create()->unique()->name];
 
         $this->updateCategory($id, $data)
-            ->assertRedirect('dashboard/categories');
+            ->assertRedirect();
     }
 
     public function testUpdateCategoryWithEmptyData()

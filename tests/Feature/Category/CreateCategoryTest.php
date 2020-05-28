@@ -3,8 +3,8 @@
 namespace Tests\Feature\Category;
 
 use App\Category;
-use Illuminate\Foundation\Testing\TestResponse;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\TestResponse;
 
 class CreateCategoryTest extends TestCase
 {
@@ -16,7 +16,7 @@ class CreateCategoryTest extends TestCase
         $data = $this->CategoryMock();
 
         $this->createCategory($data)
-            ->assertRedirect('dashboard/categories');
+            ->assertRedirect();
     }
 
     /**
