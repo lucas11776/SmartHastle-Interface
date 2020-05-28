@@ -31,4 +31,8 @@ Route::prefix('product')->group(function () {
     Route::delete('{product}', 'ProductController@Destroy');
 });
 
+Route::prefix('dashboard')->namespace('dashboard')->group(function () {
+    Route::get('', 'HomeController@Index');
+});
+
 
