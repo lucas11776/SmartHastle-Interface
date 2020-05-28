@@ -125,7 +125,7 @@ p a:hover::after
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -140,14 +140,14 @@ h1, h2, h3, h4, h5, h6
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	line-height: 1.2;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 img
 {
@@ -243,11 +243,11 @@ section
 }
 .super_container_inner.active
 {
-	-webkit-transform: translateX(350px);
-	-moz-transform: translateX(350px);
-	-ms-transform: translateX(350px);
-	-o-transform: translateX(350px);
-	transform: translateX(350px);
+	-webkit-transform: translateX(300px);
+	-moz-transform: translateX(300px);
+	-ms-transform: translateX(300px);
+	-o-transform: translateX(300px);
+	transform: translateX(300px);
 }
 .super_overlay
 {
@@ -337,11 +337,11 @@ section
 }
 .header.active
 {
-	-webkit-transform: translateX(350px);
-	-moz-transform: translateX(350px);
-	-ms-transform: translateX(350px);
-	-o-transform: translateX(350px);
-	transform: translateX(350px);
+	-webkit-transform: translateX(300px);
+	-moz-transform: translateX(300px);
+	-ms-transform: translateX(300px);
+	-o-transform: translateX(300px);
+	transform: translateX(300px);
 }
 .header_overlay
 {
@@ -467,9 +467,9 @@ section
 	font-size: 16px !important;
 	font-weight: 300 !important;
 	color: #2e2e2e !important;
-} 
+}
 .search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 300 !important;
 	color: #2e2e2e !important;
@@ -576,8 +576,8 @@ section
 {
 	position: fixed;
 	top: 0;
-	left: -350px;
-	width: 350px;
+	left: -300px;
+	width: 300px;
 	height: 100vh;
 	background: #f8f8f8;
 	padding-left: 40px;
@@ -1349,7 +1349,7 @@ section
 }
 .feature_col:first-child
 {
-	
+
 }
 .feature_col:first-child .feature_icon
 {
@@ -1571,9 +1571,9 @@ section
 	font-size: 16px !important;
 	font-weight: 500 !important;
 	color: #4a4a4a !important;
-} 
+}
 .newsletter_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 500 !important;
 	color: #4a4a4a !important;
