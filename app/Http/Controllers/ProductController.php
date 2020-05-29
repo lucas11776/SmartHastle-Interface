@@ -24,12 +24,12 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request, ProductImage $image)
     {
+        $image = $this->upload($image->allFiles());
         $product = $this->create($request->validated());
-        $image = $this->upload($image->validated()['image']);
 
         $this->createImage($product, $image);
 
-        return redirect('dashboard/upload/product');
+        return redirect('dashboard/products');
     }
 
     /**

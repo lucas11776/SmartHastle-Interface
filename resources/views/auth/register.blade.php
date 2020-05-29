@@ -27,8 +27,8 @@
                                     @error('first_name')
                                     <span class="invalid-feedback"
                                           role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="col-sm-6">
@@ -43,8 +43,8 @@
                                     @error('last_name')
                                     <span class="invalid-feedback"
                                           role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -60,8 +60,8 @@
                                 @error('email')
                                 <span class="invalid-feedback"
                                       role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                             <div class="form-group row">
@@ -76,8 +76,8 @@
                                     @error('password')
                                     <span class="invalid-feedback"
                                           role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="col-sm-6">
@@ -91,8 +91,8 @@
                                     @error('password_confirmation')
                                     <span class="invalid-feedback"
                                           role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>

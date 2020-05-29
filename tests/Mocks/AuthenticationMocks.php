@@ -7,6 +7,11 @@ use Faker\Factory as Faker;
 
 trait AuthenticationMocks
 {
+    public function loginAsUser()
+    {
+        auth()->login(factory(User::class)->create());
+    }
+
     public function RegisterMock(): array
     {
         return [

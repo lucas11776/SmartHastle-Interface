@@ -32,6 +32,14 @@
             </div>
         </li>
 
+        <!-- Home Link -->
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle"
+               href="{{ url('') }}">
+                <i class="fas fa-home"></i>
+            </a>
+        </li>
+
         <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -156,20 +164,32 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item"
+                   href="{{ url('dashboard/my/profile') }}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    My Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"
+                   href="{{ url('dashboard/products')  }}">
                     <i class="fas fa-store fa-sm fa-fw mr-2 text-gray-400"></i>
                     Products
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item"
+                   href="{{ url('dashboard/categories') }}">
                     <i class="fas fa-list-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Categories
                 </a>
+                <a class="dropdown-item"
+                   href="{{ url('dashboard/users') }}">
+                    <i class="fas fa-users-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Accounts
+                </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item"
+                   href="#"
+                   data-toggle="modal"
+                   data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

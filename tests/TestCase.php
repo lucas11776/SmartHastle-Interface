@@ -11,6 +11,11 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DatabaseMigrations, Mocks;
 
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();

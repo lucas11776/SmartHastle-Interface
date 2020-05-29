@@ -33,6 +33,14 @@ Route::prefix('product')->group(function () {
 
 Route::prefix('dashboard')->namespace('dashboard')->group(function () {
     Route::get('', 'HomeController@Index');
+    Route::prefix('products')->group(function() {
+        Route::get('', 'ProductController@Index');
+        Route::get('upload', 'ProductController@Create');
+    });
+    Route::prefix('categories', 'CategoryController')->group(function () {
+        Route::get('', 'CategoryController@Index');
+        Route::get('create', 'CategoryController@Create');
+    });
 });
 
 

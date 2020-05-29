@@ -28,4 +28,8 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => Hash::make('password'),
         'remember_token' => Str::random(10),
     ];
+})->afterCreating(User::class, function(User $user) {
+    $user->image()->create([
+        'url' => url(User::DEFAULT_PROFILE_PICTURE)
+    ]);
 });

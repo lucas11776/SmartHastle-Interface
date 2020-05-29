@@ -2,13 +2,11 @@
 
 namespace Tests\Feature\Dashboard;
 
-use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class DashboardTest extends TestCase
+class CategoryTest extends TestCase
 {
     /**
      * Setup the test environment.
@@ -23,11 +21,20 @@ class DashboardTest extends TestCase
     }
 
     /**
-     * Should get dashboard summary.
+     * Should get dashboard categories.
      */
-    public function testGetDashboard()
+    public function testGetDashboardCategories()
     {
-        $this->json('GET','dashboard')
+        $this->json('GET', 'dashboard/categories')
+            ->assertOk();
+    }
+
+    /**
+     * Should get dashboard create category form.
+     */
+    public function testGetDashboardCreateCategoryForm()
+    {
+        $this->json('GET', 'dashboard/categories/create')
             ->assertOk();
     }
 }

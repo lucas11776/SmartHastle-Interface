@@ -12055,6 +12055,6 @@ footer.sticky-footer .copyright {
   font-size: 0.8rem;
 }
 
-body.sidebar-toggled footer.sticky-footer {
-  width: 100%;
-}
+/*body.sidebar-toggled footer.sticky-footer {*/
+/*  width: 100%;*/
+/*}*/

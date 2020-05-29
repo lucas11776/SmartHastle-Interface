@@ -19,9 +19,7 @@ class CreateProductTest extends TestCase
         $this->createProduct($data)
             ->assertRedirect();
 
-        foreach($data['image'] as $image) {
-            Storage::disk('public')->assertExists($image->hashName());
-        }
+        Storage::disk('public')->assertExists($data['image']->hashName());
     }
 
     /**

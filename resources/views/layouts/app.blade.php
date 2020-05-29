@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SmartHassle') }}</title>
     <link href="assets/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="assets/app/styles/bootstrap-4.1.2/bootstrap.min.css">
     <link href="assets/app/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

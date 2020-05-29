@@ -2,13 +2,11 @@
 
 namespace Tests\Feature\Dashboard;
 
-use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class DashboardTest extends TestCase
+class ProductTest extends TestCase
 {
     /**
      * Setup the test environment.
@@ -23,11 +21,20 @@ class DashboardTest extends TestCase
     }
 
     /**
-     * Should get dashboard summary.
+     * Should get dashboard products.
      */
-    public function testGetDashboard()
+    public function testGetDashboardProducts()
     {
-        $this->json('GET','dashboard')
+        $this->json('GET', 'dashboard/products')
+            ->assertOk();
+    }
+
+    /**
+     * Should get dashboard product form view.
+     */
+    public function testGetDashboardCreateProductForm()
+    {
+        $this->json('GET', 'dashboard/products/upload')
             ->assertOk();
     }
 }
