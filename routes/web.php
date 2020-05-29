@@ -37,9 +37,12 @@ Route::prefix('dashboard')->namespace('dashboard')->group(function () {
         Route::get('', 'ProductController@Index');
         Route::get('upload', 'ProductController@Create');
     });
-    Route::prefix('categories', 'CategoryController')->group(function () {
+    Route::prefix('categories')->group(function () {
         Route::get('', 'CategoryController@Index');
         Route::get('create', 'CategoryController@Create');
+    });
+    Route::prefix('users')->group(function () {
+        Route::get('', 'UserController@Index');
     });
 });
 

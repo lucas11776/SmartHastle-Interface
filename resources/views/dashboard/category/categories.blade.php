@@ -8,7 +8,7 @@
         <a href="{{ url('dashboard/categories/create') }}"
            class="d-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-edit fa-sm text-white-50"></i>
-            Create Category
+            Create
         </a>
     </div>
 @endsection
