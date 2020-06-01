@@ -1,3 +1,5 @@
+@inject('categories', App\Category)
+
 <header class="header">
     <div class="header_overlay"></div>
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
@@ -7,7 +9,7 @@
                     <div>
                         <img src="assets/app/images/logo_1.png" alt="">
                     </div>
-                    <div>Little Closet</div>
+                    <div>SmartHassle</div>
                 </div>
             </a>
         </div>
@@ -16,23 +18,21 @@
         </div>
         <nav class="main_nav">
             <ul class="d-flex flex-row align-items-start justify-content-start">
-                <li class="active">
-                    <a href="#">Women</a>
-                </li>
-                <li>
-                    <a href="#">
+                @auth()
+                    <li>
+                        <a href="{{ url('dashboard') }}">
+                            <i class="fas fa-store"></i> Dashboard
+                        </a>
+                    </li>
+                @endauth
 
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Kids</a>
-                </li>
-                <li>
-                    <a href="#">Home Deco</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                @foreach($categories::all() as $category)
+                    <li>
+                        <a href="{{ 'categories/' . $category->slug }}">
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </nav>
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">

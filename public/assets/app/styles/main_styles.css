@@ -302,6 +302,7 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
+    filter: brightness(0.25);
 }
 .nopadding
 {
@@ -397,7 +398,7 @@ section
 }
 .hamburger:hover i
 {
-	color: #2fce98;
+	color: black;
 }
 .main_nav
 {
@@ -416,7 +417,7 @@ section
 .main_nav ul li.active a,
 .main_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .header_search
 {
@@ -447,8 +448,8 @@ section
 .search_input:focus,
 .search_input:hover
 {
-	border-color: #2fce98;
-	box-shadow: 0 0 1px 0px #2fce98 inset, 0 0 1px 0px #2fce98;
+	border-color: black;
+	box-shadow: 0 0 1px 0px black inset, 0 0 1px 0px black;
 }
 .search_input::-webkit-input-placeholder
 {
@@ -519,7 +520,7 @@ section
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background: #2fce98;
+	background: black;
 	text-align: center;
 	line-height: 24px;
 	color: #FFFFFF;
@@ -565,7 +566,7 @@ section
 .svg:hover rect,
 .svg:hover polygon
 {
-	fill: #2fce98;
+	fill: black;
 }
 
 /*********************************
@@ -608,7 +609,7 @@ section
 }
 .menu_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .menu_nav ul li a::after
 {
@@ -618,7 +619,7 @@ section
 	left: 0;
 	width: 0%;
 	height: 2px;
-	background: #2fce98;
+	background: black;
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
 	-ms-transition: all 400ms ease;
@@ -693,11 +694,11 @@ section
 }
 .menu_social_list li:hover
 {
-	border-color: #2fce98;
+	border-color: black;
 }
 .menu_social_list li:hover a i
 {
-	color: #2fce98;
+	color: black;
 }
 .menu_search
 {
@@ -737,13 +738,28 @@ section
 .home
 {
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
 	padding-top: 79px;
 }
 .home_slider_container
 {
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
+}
+/*
+    @Fix Slider Scale Bug
+*/
+@media (max-width: 782px) {
+    .home_slider_container
+    {
+        height: 115%;
+    }
+}
+@media (min-width: 782px) {
+    .home_slider_container
+    {
+        height: 130%;
+    }
 }
 .home_container
 {
@@ -800,7 +816,7 @@ section
 	right: 15px;
 	width: 127px;
 	height: 127px;
-	background: #2fce98;
+	background: black;
 	border-radius: 50%;
 	z-index: 1;
 }
@@ -859,7 +875,7 @@ section
 .product_name a:hover,
 .product_category a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .home_item_large .product_name a,
 .home_item_large .product_category,
@@ -972,7 +988,7 @@ section
 }
 .product_buttons > div > div:hover
 {
-	background: #2fce98;
+	background: black;
 }
 .home_item_large .product_buttons > div > div:hover
 {
@@ -1007,7 +1023,7 @@ section
 	right: -4px;
 	width: 18px;
 	height: 18px;
-	background: #2fce98;
+	background: black;
 	color: #FFFFFF;
 	text-align: center;
 	line-height: 18px;
@@ -1053,7 +1069,7 @@ section
 }
 .home_slider_nav:hover
 {
-	border-color: #2fce98;
+	border-color: black;
 }
 .home_slider_nav i
 {
@@ -1067,7 +1083,7 @@ section
 }
 .home_slider_nav:hover i
 {
-	color: #2fce98;
+	color: black;
 }
 .home_slider_nav_prev
 {
@@ -1111,8 +1127,8 @@ section
 }
 .home_slider_custom_dot:hover
 {
-	border-color: #2fce98;
-	color: #2fce98;
+	border-color: black;
+	color: black;
 }
 
 /*********************************
@@ -1156,7 +1172,7 @@ section
 .page_nav ul li.active a,
 .page_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .products_row
 {
@@ -1170,10 +1186,10 @@ section
 {
 	width: 138px;
 	height: 44px;
-	background: #2fce98;
+	background: black;
 	border-radius: 2px;
 	text-align: center;
-	border: solid 2px #2fce98;
+	border: solid 2px black;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1197,7 +1213,7 @@ section
 }
 .button:hover a
 {
-	color: #2fce98;
+	color: black;
 }
 
 /*********************************
@@ -1275,7 +1291,7 @@ section
 	right: -24px;
 	width: 49px;
 	height: 49px;
-	background: #2fce98;
+	background: black;
 	border-radius: 2px;
 	z-index: 1;
 	font-family: 'FontAwesome';
@@ -1321,7 +1337,7 @@ section
 	width: calc(100% + 60px);
 	left: -30px;
 	height: 147px;
-	background: #2fce98;
+	background: black;
 }
 .feature_left
 {
@@ -1413,7 +1429,6 @@ section
 }
 .footer_about
 {
-	padding-top: 47px;
 }
 .footer_logo
 {
@@ -1477,7 +1492,7 @@ section
 }
 .footer_list li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .footer_list li a > div::after
 {
@@ -1497,7 +1512,7 @@ section
 }
 .footer_list li a:hover > div::after
 {
-	color: #2fce98;
+	color: black;
 }
 .footer_list li a > div
 {
@@ -1524,7 +1539,7 @@ section
 .footer_tag_1
 {
 	left: calc(100% + 5px);
-	background: #2fce98;
+	background: black;
 }
 .footer_tag_2
 {
@@ -1533,7 +1548,7 @@ section
 }
 .footer_contact
 {
-	padding-top: 64px;
+	/*padding-top: 64px;*/
 }
 .newsletter
 {
@@ -1592,7 +1607,7 @@ section
 	width: 53px;
 	height: 53px;
 	border-radius: 50%;
-	background: #2fce98;
+	background: black;
 	border: none;
 	outline: none;
 	font-size: 24px;
@@ -1604,7 +1619,7 @@ section
 }
 .footer_social
 {
-	margin-top: 42px;
+
 }
 .footer_social_list
 {
@@ -1651,12 +1666,12 @@ section
 }
 .footer_social_list li:hover
 {
-	border-color: #2fce98;
+	border-color: black;
 	transform: translateY(-5px);
 }
 .footer_social_list li a:hover i
 {
-	color: #2fce98;
+	color: black;
 }
 .footer_bar
 {
@@ -1679,7 +1694,7 @@ section
 }
 .footer_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .copyright
 {

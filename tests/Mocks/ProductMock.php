@@ -11,7 +11,12 @@ trait ProductMock
     public function ProductMock(): array
     {
         return [
-            'image' =>  UploadedFile::fake()->create('front.png', 1000 * 2),
+            'image' =>  [
+                UploadedFile::fake()->create('front.png', 1200),
+                UploadedFile::fake()->create('back.png', 1050),
+                UploadedFile::fake()->create('left.png', 1500),
+                UploadedFile::fake()->create('right.png', 1435),
+            ],
             'category_id' => factory(Category::class)->create()->id,
             'name' => ($faker = Faker::create())->company,
             'brand' => $faker->name,

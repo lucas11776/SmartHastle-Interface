@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Product extends Model
 {
@@ -23,7 +24,7 @@ class Product extends Model
      * @var array
      */
     protected $with = [
-        'image'
+        'image', 'category'
     ];
 
     /**
@@ -44,5 +45,28 @@ class Product extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    /**
+     * Get product category.
+     *
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get product decimal last 2 decimal place.
+     *
+     * @param float $price
+     * @return string
+     */
+    public static function decimal(float $price): string
+    {
+        $str = explode('.', number_format($price, 2)) ;
+
+        return end($str);
     }
 }

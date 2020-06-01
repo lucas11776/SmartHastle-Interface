@@ -13,29 +13,24 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', 'HomeController@Index');
 Auth::routes();
-
 Route::prefix('category')->group(function () {
     Route::post('', 'CategoryController@Store');
     Route::delete('{category}', 'CategoryController@Destroy');
     Route::patch('{category}', 'CategoryController@Update');
 });
-
 Route::prefix('product')->group(function () {
     Route::post('', 'ProductController@Store');
     Route::patch('{product}', 'ProductController@Update');
     Route::delete('{product}', 'ProductController@Destroy');
 });
-
-Route::prefix('dashboard')->namespace('dashboard')->group(function () {
+Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(function () {
     Route::get('', 'HomeController@Index');
     Route::prefix('products')->group(function() {
         Route::get('', 'ProductController@Index');
         Route::get('upload', 'ProductController@Create');
+        Route::get('{product}', 'ProductController@Edit');
     });
     Route::prefix('categories')->group(function () {
         Route::get('', 'CategoryController@Index');
@@ -45,5 +40,3 @@ Route::prefix('dashboard')->namespace('dashboard')->group(function () {
         Route::get('', 'UserController@Index');
     });
 });
-
-

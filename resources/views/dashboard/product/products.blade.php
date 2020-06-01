@@ -11,5 +11,5 @@
             Upload
         </a>
     </div>
-    @include('dashboard.components.products')
+    @include('dashboard.components.products', ['products' => $products])
 @endsection

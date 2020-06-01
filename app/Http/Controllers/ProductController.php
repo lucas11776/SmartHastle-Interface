@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductImage;
-use App\Product;
-use App\Http\Requests\ProductRequest;
 use Exception;
+use App\Product;
+use App\Http\Requests\ProductImage;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -18,16 +18,15 @@ class ProductController extends Controller
     /**
      * Store new product in storage.
      *
-     * @param ProductImage $image
-     * @param ProductRequest $request
+     * @param ProductRequest $productRequest
+     * @param ProductImage $imageRequest
      * @return RedirectResponse|Redirector
      */
-    public function store(ProductRequest $request, ProductImage $image)
+    public function store(ProductRequest $productRequest, ProductImage $imageRequest)
     {
-        $image = $this->upload($image->allFiles());
-        $product = $this->create($request->validated());
+        $product = $this->create($productRequest->validated());
 
-        $this->createImage($product, $image);
+        $this->uploadImages($product, $imageRequest->validated()['image']);
 
         return redirect('dashboard/products');
     }
@@ -63,6 +62,23 @@ class ProductController extends Controller
     }
 
     /**
+     * @inheritDoc
+     */
+    public function create(array $data): Product
+    {
+        return Product::create([
+            'category_id' => $data['category_id'],
+            'slug' => Str::slug($data['name']),
+            'name' => $data['name'],
+            'brand' => $data['brand'] ?? null,
+            'price' => $data['price'],
+            'discount' => $data['discount'] ?? null,
+            'description' => $data['description'],
+
+        ]);
+    }
+
+    /**
      * Delete product images.
      *
      * @param Product $product
@@ -75,52 +91,19 @@ class ProductController extends Controller
     }
 
     /**
-     * Create new product in storage.
-     *
-     * @param array $data
-     * @return Product
-     */
-    protected function create(array $data): Product
-    {
-        return Product::create([
-            'category_id' => $data['category_id'],
-            'slug' => Str::slug($data['name']),
-            'name' => $data['name'],
-            'brand' => $data['brand'] ?? null,
-            'price' => $data['price'],
-            'discount' => $data['discount'] ?? null,
-            'description' => $data['description']
-
-        ]);
-    }
-
-    /**
      * Upload product images.
      *
+     * @param Product $product
      * @param array $images
      * @return Collection
      */
-    protected function upload(array $images): Collection
+    protected function uploadImages(Product $product, array $images): Collection
     {
-        return collect($images)->map(function(UploadedFile $image) {
-            return [
-                'path' => $path = $image->store('public'),
-                'url' => url($path)
-            ];
-        });
-    }
-
-    /**
-     * Store product images in storage.
-     *
-     * @param Product $product
-     * @param Collection $images
-     * @return Collection
-     */
-    protected function createImage(Product $product, Collection $images): Collection
-    {
-        return collect($images)->map(function (array $image) use ($product) {
-            return $product->image()->create($image);
+        return collect($images)->map(function (UploadedFile $image) use ($product) {
+            return $product->image()->create([
+                'path' => $imagePath = $image->store('public'),
+                'url' => url(Storage::url($imagePath))
+            ]);
         });
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Dashboard;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Product;
+use App\User;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
@@ -35,6 +35,17 @@ class ProductTest extends TestCase
     public function testGetDashboardCreateProductForm()
     {
         $this->json('GET', 'dashboard/products/upload')
+            ->assertOk();
+    }
+
+    /**
+     * Should get dashboard edit product form.
+     */
+    public function testGetDashboardEditProductForm()
+    {
+        $product = factory(Product::class)->create();
+
+        $this->json('GET', 'dashboard/products/' . $product->id)
             ->assertOk();
     }
 }
