@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class HomeController extends Controller
 {
@@ -28,7 +27,7 @@ class HomeController extends Controller
      */
     public function products()
     {
-        $products = Product::orderBy('id', 'DESC')->paginate(4);
+        $products = Product::orderBy('id', 'DESC')->paginate(6);
 
         return view('product.products', ['products' => $products]);
     }

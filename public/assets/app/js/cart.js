@@ -17,7 +17,7 @@ $(document).ready(function()
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -41,7 +41,7 @@ $(document).ready(function()
 		setHeader();
 	});
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -59,7 +59,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Menu
 
@@ -109,7 +109,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	4. Init SVG
 
@@ -147,10 +147,10 @@ $(document).ready(function()
 					$img.replaceWith($svg);
 				}, 'xml');
 			});
-		}	
+		}
 	}
 
-	/* 
+	/*
 
 	5. Init Qty
 

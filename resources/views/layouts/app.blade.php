@@ -18,15 +18,14 @@
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/flexslider/flexslider.css">
     @if($route::current()->uri == '{slug}')
         <link rel="stylesheet" type="text/css" href="assets/app/styles/product.css">
-        <link rel="stylesheet" type="text/css" href="assets/app/styles/product_responsive.css">
     @else
         <link rel="stylesheet" type="text/css" href="assets/app/styles/main_styles.css">
-        <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
     @endif
+    <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
 </head>
 <body>
 
-@yield('content');
+@yield('content')
 
 <script src="assets/app/js/jquery-3.2.1.min.js"></script>
 <script src="assets/app/styles/bootstrap-4.1.2/popper.js"></script>
@@ -42,7 +41,5 @@
 <script src="assets/app/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="assets/app/plugins/flexslider/jquery.flexslider-min.js"></script>
 <script src="assets/app/js/custom.js"></script>
-<script src="assets/app/js/product.js"></script>
-<script src="assets/app/assets/app/js/custom.js"></script>
 </body>
 </html>

@@ -396,7 +396,7 @@ section
 }
 .hamburger:hover i
 {
-	color: #2fce98;
+	color: black;
 }
 .main_nav
 {
@@ -415,7 +415,7 @@ section
 .main_nav ul li.active a,
 .main_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .header_search
 {
@@ -446,8 +446,8 @@ section
 .search_input:focus,
 .search_input:hover
 {
-	border-color: #2fce98;
-	box-shadow: 0 0 1px 0px #2fce98 inset, 0 0 1px 0px #2fce98;
+	border-color: black;
+	box-shadow: 0 0 1px 0px black inset, 0 0 1px 0px black;
 }
 .search_input::-webkit-input-placeholder
 {
@@ -518,7 +518,7 @@ section
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background: #2fce98;
+	background: black;
 	text-align: center;
 	line-height: 24px;
 	color: #FFFFFF;
@@ -564,7 +564,7 @@ section
 .svg:hover rect,
 .svg:hover polygon
 {
-	fill: #2fce98;
+	fill: black;
 }
 
 /*********************************
@@ -607,7 +607,7 @@ section
 }
 .menu_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .menu_nav ul li a::after
 {
@@ -617,7 +617,7 @@ section
 	left: 0;
 	width: 0%;
 	height: 2px;
-	background: #2fce98;
+	background: black;
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
 	-ms-transition: all 400ms ease;
@@ -692,11 +692,11 @@ section
 }
 .menu_social_list li:hover
 {
-	border-color: #2fce98;
+	border-color: black;
 }
 .menu_social_list li:hover a i
 {
-	color: #2fce98;
+	color: black;
 }
 .menu_search
 {
@@ -780,7 +780,7 @@ section
 }
 .breadcrumbs ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 
 /*********************************
@@ -887,7 +887,7 @@ section
 }
 .fs_nav:hover i
 {
-	color: #2fce98;
+	color: black;
 }
 .fs_prev
 {
@@ -915,7 +915,7 @@ section
 }
 .product_category a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .product_category
 {
@@ -981,7 +981,7 @@ section
 .product_reviews_link a
 {
 	font-size: 18px;
-	color: #2fce98;
+	color: black;
 }
 .product_price
 {
@@ -1017,8 +1017,8 @@ section
 }
 .regular_radio:checked + label
 {
-	color: #2fce98;
-	border-color: #2fce98;
+	color: black;
+	border-color: black;
 }
 .regular_radio + label
 {
@@ -1092,7 +1092,7 @@ section
 }
 .product_buttons > div > div:hover
 {
-	background: #2fce98;
+	background: black;
 }
 .product_buttons > div > div:first-of-type
 {
@@ -1119,7 +1119,7 @@ section
 	right: -4px;
 	width: 18px;
 	height: 18px;
-	background: #2fce98;
+	background: black;
 	color: #FFFFFF;
 	text-align: center;
 	line-height: 18px;
@@ -1265,7 +1265,7 @@ section
 }
 .footer_list li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .footer_list li a > div::after
 {
@@ -1285,7 +1285,7 @@ section
 }
 .footer_list li a:hover > div::after
 {
-	color: #2fce98;
+	color: black;
 }
 .footer_list li a > div
 {
@@ -1312,7 +1312,7 @@ section
 .footer_tag_1
 {
 	left: calc(100% + 5px);
-	background: #2fce98;
+	background: black;
 }
 .footer_tag_2
 {
@@ -1380,7 +1380,7 @@ section
 	width: 53px;
 	height: 53px;
 	border-radius: 50%;
-	background: #2fce98;
+	background: black;
 	border: none;
 	outline: none;
 	font-size: 24px;
@@ -1439,12 +1439,12 @@ section
 }
 .footer_social_list li:hover
 {
-	border-color: #2fce98;
+	border-color: black;
 	transform: translateY(-5px);
 }
 .footer_social_list li a:hover i
 {
-	color: #2fce98;
+	color: black;
 }
 .footer_bar
 {
@@ -1467,7 +1467,7 @@ section
 }
 .footer_nav ul li a:hover
 {
-	color: #2fce98;
+	color: black;
 }
 .copyright
 {

@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     @include('components.app.categories')
-                    @include('components.app.products', ['product.products' => $products])
+                    @include('components.app.product.products', ['product.products' => $products])
                     <div class="row pt-3">
                         <div class="col">
                             {{ $products->links() }}

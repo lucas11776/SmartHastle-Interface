@@ -41,7 +41,7 @@
                                                                     </div>
                                                                     <div>
                                                                     <span class="p-1">
-                                                                        R{{ (int)$product->price }}<span>.{{ $product::decimal($product->price) }}</span>
+                                                                        R{{ (int)$product->price }}<span class="p-0 m-0">.{{ $product::decimal($product->price) }}</span>
                                                                     </span>
                                                                     </div>
                                                                 </div>

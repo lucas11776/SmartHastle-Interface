@@ -9,6 +9,9 @@
 3. Init Menu
 4. Init Home Slider
 5. Init SVG
+ 6. Init Qty
+ 7. Init Isotope
+ 8. Init Product Slider
 
 
 ******************************/
@@ -17,7 +20,7 @@ $(document).ready(function()
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -28,8 +31,11 @@ $(document).ready(function()
 	initMenu();
 	initHomeSlider();
 	initSvg();
+    initQty();
+    initIsotope();
+    initProductSlider();
 
-	setHeader();
+    setHeader();
 
 	$(window).on('resize', function()
 	{
@@ -41,7 +47,7 @@ $(document).ready(function()
 		setHeader();
 	});
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -59,7 +65,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Menu
 
@@ -109,7 +115,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	4. Init Home Slider
 
@@ -180,7 +186,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	5. Init SVG
 
@@ -218,7 +224,193 @@ $(document).ready(function()
 					$img.replaceWith($svg);
 				}, 'xml');
 			});
-		}	
+		}
 	}
 
+    /*
+
+    6. Init Qty
+
+    */
+
+    function initQty()
+    {
+        if($('.product_quantity').length)
+        {
+            var qtys = $('.product_quantity');
+
+            qtys.each(function()
+            {
+                var qty = $(this);
+                var sub = qty.find('.qty_sub');
+                var add = qty.find('.qty_add');
+                var num = qty.find('.product_num');
+                var original;
+                var newValue;
+
+                sub.on('click', function()
+                {
+                    original = parseFloat(qty.find('.product_num').text());
+                    if(original > 0)
+                    {
+                        newValue = original - 1;
+                    }
+                    num.text(newValue);
+                });
+
+                add.on('click', function()
+                {
+                    original = parseFloat(qty.find('.product_num').text());
+                    newValue = original + 1;
+                    num.text(newValue);
+                });
+            });
+        }
+    }
+
+    /*
+
+	7. Init Isotope
+
+	*/
+
+    function initIsotope()
+    {
+        var sortingButtons = $('.item_sorting_btn');
+
+        if($('.grid').length)
+        {
+            var grid = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                percentPosition: true,
+                masonry:
+                    {
+                        horizontalOrder: true
+                    },
+                getSortData:
+                    {
+                        price: function(itemElement)
+                        {
+                            var priceEle = $(itemElement).find('.product_price').text().replace( '$', '' );
+                            return parseFloat(priceEle);
+                        },
+                        name: '.product_name'
+                    }
+            });
+
+            sortingButtons.each(function()
+            {
+                $(this).on('click', function()
+                {
+                    var parent = $(this).parent().parent().find('.isotope_sorting_text span');
+                    parent.text($(this).text());
+                    var option = $(this).attr('data-isotope-option');
+                    option = JSON.parse( option );
+                    grid.isotope( option );
+                });
+            });
+
+            // Filtering
+            $('.item_filter_btn').on('click', function()
+            {
+                var parent = $(this).parent().parent().find('.isotope_filter_text span');
+                parent.text($(this).text());
+                var filterValue = $(this).attr('data-filter');
+                grid.isotope({ filter: filterValue });
+            });
+        }
+    }
+
+
+    /*
+
+	8. Init Product Slider
+
+	*/
+
+    function initProductSlider()
+    {
+        var carousel = $('#carousel');
+        var prev = $('.fs_prev');
+        var next = $('.fs_next');
+        var slideCount = $('#carousel .slides > li').length;
+        carousel.flexslider(
+            {
+                animation: "slide",
+                direction:'vertical',
+                reverse: false,
+                controlNav: false,
+                directionNav: false,
+                animationLoop: false,
+                slideshow: false,
+                animationSpeed: 300,
+                after: function(slider)
+                {
+                    var i = slider.currentSlide;
+                    console.log(i);
+                    if(i === 0)
+                    {
+                        prev.addClass('disabled');
+                    }
+                    else
+                    {
+                        prev.removeClass('disabled');
+                    }
+
+                    if(i < (slideCount - 3))
+                    {
+                        next.removeClass('disabled');
+                    }
+                    else
+                    {
+                        next.addClass('disabled');
+                    }
+                }
+            });
+
+        $('#slider').flexslider(
+            {
+                animation: "slide",
+                direction:'vertical',
+                controlNav: false,
+                directionNav: false,
+                animationLoop: false,
+                slideshow: false
+            });
+
+        var thumbs = $('#carousel .slides > li');
+        thumbs.each(function()
+        {
+            var thumb = $(this);
+            thumb.on('click', function()
+            {
+                var selectedIndex = thumbs.index(thumb);
+                $('#slider').flexslider(selectedIndex);
+            });
+        });
+
+        // Custom Navigation
+        if(prev.length)
+        {
+            prev.on('click', function()
+            {
+                if(!prev.hasClass('disabled'))
+                {
+                    $('#carousel').flexslider('prev');
+                }
+            });
+        }
+
+        if(next.length)
+        {
+            var next = $('.fs_next');
+            next.on('click', function()
+            {
+                if(!next.hasClass('disabled'))
+                {
+                    $('#carousel').flexslider('next');
+                }
+            });
+        }
+    }
 });
