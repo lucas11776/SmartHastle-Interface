@@ -42,7 +42,11 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(
     });
 });
 Route::prefix('cart')->middleware(['auth'])->group(function () {
+    Route::get('', 'CartController@Index');
     Route::post('', 'CartController@Store');
     Route::delete('', 'CartController@Destroy');
+});
+Route::prefix('checkout')->middleware(['auth'])->group(function () {
+    Route::get('', 'CheckoutController@Index');
 });
 Route::get('{slug}', 'HomeController@Product');

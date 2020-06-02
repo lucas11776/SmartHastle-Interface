@@ -5,10 +5,24 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\ItemInCartRequest;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class CartController extends Controller
 {
+    /**
+     * Get user cart page.
+     *
+     * @return Factory|View
+     */
+    public function index()
+    {
+        $carts = auth()->user()->cart()->paginate(15);
+
+        return view('cart.items', ['items' => $carts]);
+    }
+
     /**
      * Store new item in cart.
      *
