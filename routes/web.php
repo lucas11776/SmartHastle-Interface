@@ -43,5 +43,6 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(
 });
 Route::prefix('cart')->middleware(['auth'])->group(function () {
     Route::post('', 'CartController@Store');
+    Route::delete('', 'CartController@Destroy');
 });
 Route::get('{slug}', 'HomeController@Product');

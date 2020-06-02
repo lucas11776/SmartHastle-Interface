@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Friend;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -59,6 +61,16 @@ class User extends Authenticatable implements JWTSubject
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    /**
+     * Get user cart.
+     *
+     * @return HasMany
+     */
+    public function cart(): HasMany
+    {
+        return $this->hasMany(Cart::class);
     }
 
     /**

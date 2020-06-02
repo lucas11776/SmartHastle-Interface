@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Http\Requests\CartRequest;
+use App\Http\Requests\ItemInCartRequest;
 use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
@@ -19,6 +20,21 @@ class CartController extends Controller
         $data = array_merge($cartRequest->validated(), ['user_id' => auth()->user()->id]);
 
         $this->create($data);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Delete item in cart.
+     *
+     * @param ItemInCartRequest $inCartRequest
+     * @return RedirectResponse
+     */
+    public function destroy(ItemInCartRequest $inCartRequest)
+    {
+        $data = $inCartRequest->validated();
+
+        auth()->user()->cart()->delete('id', $data['id']);
 
         return redirect()->back();
     }
