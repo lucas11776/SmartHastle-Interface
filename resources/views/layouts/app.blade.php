@@ -1,3 +1,4 @@
+@inject('route', Illuminate\Support\Facades\Route)
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -14,15 +15,20 @@
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="assets/app/styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
-    <!-- Page Required JavaScript Plugin load -->
-    <script src="assets/app/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/app/plugins/flexslider/flexslider.css">
+    @if($route::current()->uri == '{slug}')
+        <link rel="stylesheet" type="text/css" href="assets/app/styles/product.css">
+        <link rel="stylesheet" type="text/css" href="assets/app/styles/product_responsive.css">
+    @else
+        <link rel="stylesheet" type="text/css" href="assets/app/styles/main_styles.css">
+        <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
+    @endif
 </head>
 <body>
 
 @yield('content');
 
+<script src="assets/app/js/jquery-3.2.1.min.js"></script>
 <script src="assets/app/styles/bootstrap-4.1.2/popper.js"></script>
 <script src="assets/app/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
 <script src="assets/app/plugins/greensock/TweenMax.min.js"></script>
@@ -34,6 +40,9 @@
 <script src="assets/app/plugins/easing/easing.js"></script>
 <script src="assets/app/plugins/progressbar/progressbar.min.js"></script>
 <script src="assets/app/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="assets/app/plugins/flexslider/jquery.flexslider-min.js"></script>
 <script src="assets/app/js/custom.js"></script>
+<script src="assets/app/js/product.js"></script>
+<script src="assets/app/assets/app/js/custom.js"></script>
 </body>
 </html>

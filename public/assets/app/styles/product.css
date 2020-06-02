@@ -124,7 +124,7 @@ p a:hover::after
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -139,14 +139,14 @@ h1, h2, h3, h4, h5, h6
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	line-height: 1.2;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 img
 {
@@ -466,9 +466,9 @@ section
 	font-size: 16px !important;
 	font-weight: 300 !important;
 	color: #2e2e2e !important;
-} 
+}
 .search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 300 !important;
 	color: #2e2e2e !important;
@@ -740,7 +740,7 @@ section
 	padding-top: 79px;
 	background: #4a4a4a;
 }
-.home_container	
+.home_container
 {
 	width: 100%;
 	height: 100%;
@@ -830,7 +830,7 @@ section
 }
 #carousel
 {
-	
+
 	width: 116px;
 	height: 325px;
 }
@@ -1359,9 +1359,9 @@ section
 	font-size: 16px !important;
 	font-weight: 500 !important;
 	color: #4a4a4a !important;
-} 
+}
 .newsletter_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 500 !important;
 	color: #4a4a4a !important;

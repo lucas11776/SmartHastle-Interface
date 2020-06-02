@@ -1,14 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="super_container">
-        <!-- Header -->
+    <div class="super_container mt-5">
         @extends('components.app.header')
         <div class="super_container_inner">
             @extends('components.app.menu')
             <div class="super_overlay"></div>
-            <!-- Jumbotron -->
-            @include('components.app.jumbotron')
-            <!-- Products -->
             <div class="products">
                 <div class="container">
                     <div class="row">
@@ -20,18 +16,13 @@
                     </div>
                     @include('components.app.categories')
                     @include('components.app.products', ['product.products' => $products])
-                    <div class="row load_more_row">
+                    <div class="row pt-3">
                         <div class="col">
-                            <div class="button load_more ml-auto mr-auto">
-                                <a href="{{ url('products') }}">
-                                    <i class="fas fa-shopping-cart"></i> More
-                                </a>
-                            </div>
+                            {{ $products->links() }}
                         </div>
                     </div>
                 </div>
             </div>
-            @include('components.app.features')
             @include('components.app.footer')
         </div>
     </div>

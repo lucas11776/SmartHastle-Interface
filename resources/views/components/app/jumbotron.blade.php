@@ -31,7 +31,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-8 offset-sm-2 offset-md-0">\
+                                                <div class="col-lg-4 col-md-6 col-sm-8 offset-sm-2 offset-md-0">
                                                     <a href="{{ url($product->slug) }}">
                                                         <div class="product home_item_large">
                                                             <div class="product_tag d-flex flex-column align-items-center justify-content-center">

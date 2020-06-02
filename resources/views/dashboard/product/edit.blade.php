@@ -15,13 +15,13 @@
                 @method('PATCH')
                 @csrf
                 <div class="form-group row pb-4">
-                    @for($i = 0; $i < count($images = $product->images()->limit(3)->get()); $i++)
+                    @foreach($product->images()->limit(3)->get() as $image)
                         <div class="col-4 text-center">
                             <img class="img-profile img-thumbnail shadow"
-                                 style="height: 100px;"
-                                 src="{{ $product->image->url }}">
+                             style="height: 100px;"
+                             src="{{ $image->url }}">
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
                 <div class="form-group row">
                     <label for="name"

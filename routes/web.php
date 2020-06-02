@@ -14,6 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@Index');
+Route::get('products', 'HomeController@Products');
 Auth::routes();
 Route::prefix('category')->group(function () {
     Route::post('', 'CategoryController@Store');
@@ -40,3 +41,4 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(
         Route::get('', 'UserController@Index');
     });
 });
+Route::get('{slug}', 'HomeController@Product');
