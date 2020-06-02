@@ -41,4 +41,7 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(
         Route::get('', 'UserController@Index');
     });
 });
+Route::prefix('cart')->middleware(['auth'])->group(function () {
+    Route::post('', 'CartController@Store');
+});
 Route::get('{slug}', 'HomeController@Product');

@@ -4,5 +4,8 @@ namespace Tests\Mocks;
 
 trait Mocks
 {
-    use AuthenticationMocks, CategoryMock, ProductMock;
+    use AuthenticationMocks,
+        CategoryMock,
+        ProductMock,
+        CartMock;
 }
