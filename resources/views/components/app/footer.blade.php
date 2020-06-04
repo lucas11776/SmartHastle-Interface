@@ -9,7 +9,7 @@
                             <a href="#">
                                 <div class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="footer_logo_icon">
-                                        <img src="assets/app/images/logo_2.png"
+                                        <img src="{{ url('assets/app/images/logo_2.png') }}"
                                              alt="">
                                     </div>
                                     <div>

@@ -146,7 +146,7 @@
         </li>
         <!-- Block -->
         <div class="topbar-divider d-none d-sm-block"></div>
-        <!-- Nav Item - User Information -->
+        <!-- Nav Item - user Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle"
                href="#" id="userDropdown"
@@ -161,7 +161,7 @@
                      src="{{ auth()->user()->image->url }}"
                      title="{{ auth()->user()->first_name . ' ' . auth()->user()->last_name  }}">
             </a>
-            <!-- Dropdown - User Information -->
+            <!-- Dropdown - user Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="userDropdown">
                 <a class="dropdown-item"

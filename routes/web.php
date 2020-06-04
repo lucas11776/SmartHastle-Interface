@@ -42,7 +42,12 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(
     });
 });
 Route::prefix('my')->middleware(['auth'])->group(function () {
-    Route::get('account', 'UserController@Index');
+    Route::get('orders', 'UserController@Orders');
+    Route::get('favorites', 'UserController@Favorites');
+    Route::prefix('account')->group(function () {
+        Route::get('', 'UserController@Index');
+        Route::get('change/password', 'UserController@ChangePassword');
+    });
 });
 Route::prefix('user')->middleware(['auth'])->group(function() {
     Route::patch('', 'UserController@Update');

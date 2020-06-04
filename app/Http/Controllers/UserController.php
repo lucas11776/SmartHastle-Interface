@@ -12,13 +12,42 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
-     * Get user account settings.
+     * Get user account settings page.
      *
      * @return Factory|View
      */
     public function index()
     {
         return view('user.account', ['user' => auth()->user()]);
+    }
+
+    /**
+     * Get user favorite items.
+     *
+     * @return Factory|View
+     */
+    public function favorites()
+    {
+        return view('user.favorites');
+    }
+    /**
+     * Get user orders.
+     *
+     * @return Factory|View
+     */
+    public function orders()
+    {
+        return view('user.orders');
+    }
+
+    /**
+     * Get change user password page.
+     *
+     * @return Factory|View
+     */
+    public function changePassword()
+    {
+        return view('user.change_password');
     }
 
     /**

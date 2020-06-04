@@ -2,8 +2,14 @@
     <!-- Search -->
     <div class="menu_search">
         <form action="#" id="menu_search_form" class="menu_search_form">
-            <input type="text" class="search_input" placeholder="Search Item" required="required">
-            <button class="menu_search_button"><img src="assets/app/images/search.png" alt=""></button>
+            <input type="text"
+                   class="search_input"
+                   placeholder="Search Item"
+                   required="required">
+            <button class="menu_search_button">
+                <img src="{{ url('assets/app/images/search.png') }}"
+                     alt="">
+            </button>
         </form>
     </div>
     <!-- Navigation -->
@@ -50,7 +56,12 @@
     <!-- Contact Info -->
     <div class="menu_contact">
         <div class="menu_phone d-flex flex-row align-items-center justify-content-start">
-            <div><div><img src="assets/app/images/phone.svg" alt="https://www.flaticon.com/authors/freepik"></div></div>
+            <div>
+                <div>
+                    <img src="{{ url('assets/app/images/phone.svg') }}"
+                         alt="https://www.flaticon.com/authors/freepik">
+                </div>
+            </div>
             <div>+1 912-252-7350</div>
         </div>
         <div class="menu_social">

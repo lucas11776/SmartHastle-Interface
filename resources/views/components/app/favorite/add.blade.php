@@ -14,7 +14,7 @@
                 <input type="hidden"
                        id="cart-form-{{ $item->id }}-size"
                        name="size">
-                <img src="assets/app/images/heart_2.svg"
+                <img src="{{ url('assets/app/images/heart_2.svg') }}"
                      class="svg"
                      alt="Add to cart.">
                 <div>+</div>

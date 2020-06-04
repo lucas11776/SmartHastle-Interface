@@ -1,5 +1,4 @@
 @inject('categories', App\Category)
-
 <header class="header">
     <div class="header_overlay"></div>
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
@@ -7,7 +6,8 @@
             <a href="{{ url('') }}">
                 <div class="d-flex flex-row align-items-center justify-content-start">
                     <div>
-                        <img src="assets/app/images/logo_1.png" alt="">
+                        <img src="{{ url('assets/app/images/logo_1.png') }}"
+                             alt="SmartHassle">
                     </div>
                     <div>SmartHassle</div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="user">
                     <a href="{{ url('my/account') }}">
                         <div>
-                            <img src="assets/app/images/user.svg"
+                            <img src="{{ url('assets/app/images/user.svg') }}"
                                  alt="https://www.flaticon.com/authors/freepik"
                                  title="User account">
                         </div>
@@ -64,7 +64,7 @@
                     <a href="{{ url('cart') }}">
                         <div>
                             <img class="svg"
-                                 src="assets/app/images/cart.svg"
+                                 src="{{ url('assets/app/images/cart.svg') }}"
                                  alt="https://www.flaticon.com/authors/freepik"
                                  title="Items in cart">
                             <div>{{ auth()->user()->cart()->count() }}</div>
@@ -76,7 +76,7 @@
                 <div class="user mr-0 mr-sm-3">
                     <a href="{{ url('login') }}">
                         <div>
-                            <img src="assets/app/images/user.svg"
+                            <img src="{{ url('assets/app/images/user.svg') }}"
                                  alt="https://www.flaticon.com/authors/freepik"
                                  title="Login">
                         </div>
@@ -88,7 +88,7 @@
                 <div>
                     <div>
                         <a href="tel:+1 912-252-7350">
-                            <img src="assets/app/images/phone.svg"
+                            <img src="{{ url('assets/app/images/phone.svg') }}"
                                  alt="https://www.flaticon.com/authors/freepik"
                                  title="Call">
                         </a>

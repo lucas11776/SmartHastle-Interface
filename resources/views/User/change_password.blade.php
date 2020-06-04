@@ -16,12 +16,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        @include('components.app.user.profile_details')
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @include('components.app.user.account_form', ['user' => $user])
+                                        @include('components.app.user.change_password_form')
                                     </div>
                                 </div>
 
