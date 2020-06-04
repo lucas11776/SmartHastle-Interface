@@ -41,6 +41,13 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth'])->group(
         Route::get('', 'UserController@Index');
     });
 });
+Route::prefix('my')->middleware(['auth'])->group(function () {
+    Route::get('account', 'UserController@Index');
+});
+Route::prefix('user')->middleware(['auth'])->group(function() {
+    Route::patch('', 'UserController@Update');
+    Route::post('picture', 'UserController@UploadProfilePicture');
+});
 Route::prefix('cart')->middleware(['auth'])->group(function () {
     Route::get('', 'CartController@Index');
     Route::post('', 'CartController@Store');
