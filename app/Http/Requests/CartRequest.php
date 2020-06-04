@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Cart;
+use App\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -36,7 +37,7 @@ class CartRequest extends FormRequest
                 }
             ],
             'size' => [
-                'nullable', 'string'
+                'nullable', 'string', Rule::in(Product::$sizes)
             ]
         ];
     }

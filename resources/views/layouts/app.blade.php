@@ -16,20 +16,38 @@
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/app/plugins/flexslider/flexslider.css">
-    @if($route::current()->uri == '{slug}')
-        <link rel="stylesheet" type="text/css" href="assets/app/styles/product.css">
-    @else
-        <link rel="stylesheet" type="text/css" href="assets/app/styles/main_styles.css">
-    @endif
-    <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
+    @switch($route::current()->uri)
+        @case('/')
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/main_styles.css">
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
+            @break
+        @case('{slug}')
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/product.css">
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/product_responsive.css">
+            @break
+        @case('cart')
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/cart.css">
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/cart_responsive.css">
+            @break
+        @case('products')
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/main_styles.css">
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/responsive.css">
+            @break
+        @case('checkout')
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/checkout.css">
+            <link rel="stylesheet" type="text/css" href="assets/app/styles/checkout_responsive.css">
+            @break
+    @endswitch
+
+    <!-- Page Dep Pug-ins -->
+    <script src="assets/app/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/app/styles/bootstrap-4.1.2/popper.js"></script>
+    <script src="assets/app/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
 </head>
 <body>
 
 @yield('content')
 
-<script src="assets/app/js/jquery-3.2.1.min.js"></script>
-<script src="assets/app/styles/bootstrap-4.1.2/popper.js"></script>
-<script src="assets/app/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
 <script src="assets/app/plugins/greensock/TweenMax.min.js"></script>
 <script src="assets/app/plugins/greensock/TimelineMax.min.js"></script>
 <script src="assets/app/plugins/scrollmagic/ScrollMagic.min.js"></script>

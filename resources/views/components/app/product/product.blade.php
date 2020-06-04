@@ -26,16 +26,7 @@
         </div>
         <div class="product_buttons">
             <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                    <div>
-                        <div>
-                            <img src="assets/app/images/heart_2.svg"
-                                 class="svg"
-                                 alt="">
-                            <div>+</div>
-                        </div>
-                    </div>
-                </div>
+                @include('components.app.favorite.add', ['item' => $product])
                 @include('components.app.cart.add', ['item' => $product])
             </div>
         </div>

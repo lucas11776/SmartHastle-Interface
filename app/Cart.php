@@ -3,9 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Cart extends Model
 {
+    /**
+     * Type that are allowed to be in cart.
+     *
+     * @var array
+     */
+    public static $cartable_types = [
+        Product::class
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,11 +26,21 @@ class Cart extends Model
     ];
 
     /**
-     * Type that are allowed to be in cart.
+     * The relations to eager load on every query.
      *
      * @var array
      */
-    public static $cartable_types = [
-        Product::class
+    protected $with = [
+        'cartable'
     ];
+
+    /**
+     * Get cart item.
+     *
+     * @return MorphTo
+     */
+    public function cartable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

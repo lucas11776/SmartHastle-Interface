@@ -10,6 +10,15 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Product extends Model
 {
     /**
+     * Product sizes.'s0
+     *
+     * @var array
+     */
+    public static $sizes = [
+        'xs', 's', 'm', 'l', 'xl', 'xxl'
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

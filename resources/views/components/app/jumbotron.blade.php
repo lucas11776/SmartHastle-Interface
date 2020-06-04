@@ -1,10 +1,8 @@
 @inject('products', App\Product)
-
 <div class="home">
-    <!-- Home Slider -->
     <div class="home_slider_container">
         <div class="owl-carousel owl-theme home_slider">
-            <!-- Slide -->
+            <!-- Slides -->
             @foreach($sliderProducts = $products::orderBy('id', 'DESC')->limit(4)->get() as $product)
                 <div class="owl-item">
                     <div class="background_image"
@@ -25,7 +23,8 @@
                                                 <div class="col-sm-3 offset-lg-1">
                                                     <div class="home_item_side">
                                                         <a href="{{ url($product->slug) }}">
-                                                            <img src="{{ $product->images->get(1)->url }}"
+                                                            <img class="d-none d-md-block d-lg-block d-xl-block"
+                                                                 src="{{ $product->images->get(1)->url }}"
                                                                  alt="{{ $product->name }}"
                                                                  height="300">
                                                         </a>
@@ -80,24 +79,8 @@
                                                                 </div>
                                                                 <div class="product_buttons">
                                                                     <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                                        <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                                                            <div>
-                                                                                <div>
-                                                                                    <img src="assets/app/images/heart.svg"
-                                                                                         alt="Add To Likes">
-                                                                                    <div>+</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                                            <div>
-                                                                                <div>
-                                                                                    <img src="assets/app/images/cart_2.svg"
-                                                                                         alt="Add To Category">
-                                                                                    <div>+</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        @include('components.app.favorite.add', ['item' => $product])
+                                                                        @include('components.app.cart.add', ['item' => $product])
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -105,13 +88,13 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <div class="home_item_side">
-                                                        <a href="{{ url($product->slug) }}">
-                                                            <img src="{{ $product->images->get(2)->url }}"
-                                                                 alt="{{ $product->name }}"
-                                                                 height="300">
-                                                        </a>
-                                                    </div>
+                                                    <div class="home_item_side"></div>
+                                                    <a href="{{ url($product->slug) }}">
+                                                        <img class="d-none d-md-block d-lg-block d-xl-block"
+                                                             src="{{ $product->images->get(2)->url }}"
+                                                             alt="{{ $product->name }}"
+                                                             height="300">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

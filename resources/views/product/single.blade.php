@@ -28,40 +28,15 @@
                                 <div class="product_price">
                                     R{{ (int)$product->price }}<span>.{{ $product::decimal($product->price) }}</span>
                                 </div>
-                                <div class="product_size">
-                                    <div class="product_size_title">Select Size</div>
-                                    <ul class="d-flex flex-row align-items-start justify-content-start">
-                                        <li>
-                                            <input type="radio" id="radio_1" disabled name="product_radio" class="regular_radio radio_1">
-                                            <label for="radio_1">XS</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="radio_2" name="product_radio" class="regular_radio radio_2" checked>
-                                            <label for="radio_2">S</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="radio_3" name="product_radio" class="regular_radio radio_3">
-                                            <label for="radio_3">M</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="radio_4" name="product_radio" class="regular_radio radio_4">
-                                            <label for="radio_4">L</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="radio_5" name="product_radio" class="regular_radio radio_5">
-                                            <label for="radio_5">XL</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="radio_6" disabled name="product_radio" class="regular_radio radio_6">
-                                            <label for="radio_6">XXL</label>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @include('components.app.cart.size', ['product' => $product])
                                 <div class="product_text">
                                     <p>{{ $product->description }}</p>
                                 </div>
                                 <div class="product_buttons">
-
+                                    <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                        @include('components.app.favorite.add', ['item' => $product])
+                                        @include('components.app.cart.add', ['item' => $product])
+                                    </div>
                                 </div>
                             </div>
                         </div>

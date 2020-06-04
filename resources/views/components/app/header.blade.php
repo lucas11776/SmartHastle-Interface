@@ -57,17 +57,17 @@
                             <img src="assets/app/images/user.svg"
                                  alt="https://www.flaticon.com/authors/freepik"
                                  title="User account">
-                            <div>1</div>
                         </div>
                     </a>
                 </div>
-                <div class="cart">
+                <div class="cart user">
                     <a href="{{ url('cart') }}">
                         <div>
                             <img class="svg"
                                  src="assets/app/images/cart.svg"
                                  alt="https://www.flaticon.com/authors/freepik"
                                  title="Items in cart">
+                            <div>{{ auth()->user()->cart()->count() }}</div>
                         </div>
                     </a>
                 </div>

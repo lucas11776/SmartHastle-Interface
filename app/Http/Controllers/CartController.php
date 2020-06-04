@@ -18,7 +18,10 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = auth()->user()->cart()->paginate(15);
+        $carts = auth()->user()
+            ->cart()
+            ->orderBy('id', 'DESC')
+            ->paginate(15);
 
         return view('cart.items', ['items' => $carts]);
     }
@@ -31,9 +34,41 @@ class CartController extends Controller
      */
     public function store(CartRequest $cartRequest)
     {
-        $data = array_merge($cartRequest->validated(), ['user_id' => auth()->user()->id]);
+        $data = array_merge(
+            $cartRequest->validated(),
+            ['user_id' => auth()->user()->id]
+        );
 
         $this->create($data);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Update item in cart.
+     *
+     * @param ItemInCartRequest $inCartRequest
+     * @param CartRequest $cartRequest
+     * @return RedirectResponse
+     */
+    public function update(ItemInCartRequest $inCartRequest, CartRequest $cartRequest)
+    {
+        auth()->user()
+            ->cart()
+            ->where('id', $inCartRequest->validated()['id'])
+            ->update($cartRequest->validated());
+
+        return redirect()->back();
+    }
+
+    /**
+     * Clear user cart and redirect.
+     *
+     * @return RedirectResponse
+     */
+    public function clear()
+    {
+        auth()->user()->cart()->delete();
 
         return redirect()->back();
     }
@@ -48,7 +83,7 @@ class CartController extends Controller
     {
         $data = $inCartRequest->validated();
 
-        auth()->user()->cart()->delete('id', $data['id']);
+        auth()->user()->cart()->where('id', $data['id'])->delete();
 
         return redirect()->back();
     }

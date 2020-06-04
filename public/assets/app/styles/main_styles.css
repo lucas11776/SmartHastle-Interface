@@ -1017,7 +1017,7 @@ section
 {
 	max-width: 100% !important;
 }
-.product_button > div > div > div
+.product_button > div > div > form > div
 {
 	position: absolute;
 	top: -3px;
