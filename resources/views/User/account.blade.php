@@ -16,7 +16,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        @include('components.app.user.profile_details')
+                                        @include('components.app.user.profile_details', ['user' => $user])
                                     </div>
                                 </div>
                                 <div class="row">

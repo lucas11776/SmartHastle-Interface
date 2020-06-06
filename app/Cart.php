@@ -12,7 +12,7 @@ class Cart extends Model
      *
      * @var array
      */
-    public static $cartable_types = [
+    public const CARTABLES = [
         Product::class
     ];
 

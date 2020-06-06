@@ -21,6 +21,10 @@
     <!-- Custom styles for this template-->
     <link href="{{ url('assets/dashboard/css/sb-admin-2.css') }}"
           rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ url('assets/dashboard/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('assets/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </head>
 <body id="page-top sidebar-toggled">
 
@@ -49,9 +53,6 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<!-- Bootstrap core JavaScript-->
-<script src="{{ url('assets/dashboard/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ url('assets/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="{{ url('assets/dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>

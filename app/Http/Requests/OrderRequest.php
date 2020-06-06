@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Order;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ProductImage extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,7 @@ class ProductImage extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return ! auth()->guest();
     }
 
     /**
@@ -21,15 +23,12 @@ class ProductImage extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public static function rules()
     {
         return [
-            'image' => [
-                'required', 'array', 'min:3', 'max:8'
-            ],
-            'image.*' => [
-                'required', 'image', 'dimensions:min_width=500,min_height=500,max_width=800,max_height=800'
-            ],
+            'status' => [
+                'required', Rule::in(Order::STATUS)
+            ]
         ];
     }
 }

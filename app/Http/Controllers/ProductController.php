@@ -25,8 +25,10 @@ class ProductController extends Controller
     public function store(ProductRequest $productRequest, ProductImage $imageRequest)
     {
         $product = $this->create($productRequest->validated());
+        $images = collect($imageRequest->validated()['image'])->sortKeysDesc();
 
-        $this->uploadImages($product, $imageRequest->validated()['image']);
+
+        $this->uploadImages($product, $images->toArray());
 
         return redirect('dashboard/products');
     }
@@ -42,7 +44,7 @@ class ProductController extends Controller
     {
         $product->update($request->validated());
 
-        return redirect('dashboard/products');
+        return redirect()->back();
     }
 
     /**

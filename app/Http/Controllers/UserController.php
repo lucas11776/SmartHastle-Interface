@@ -92,8 +92,8 @@ class UserController extends Controller
         Storage::delete($user->image->path);
 
         return $user->image()->update([
-            'path' => $path,
-            'url' => url($path)
+            'path' =>  $path,
+            'url' => url(Storage::url($path))
         ]);
     }
 

@@ -31,16 +31,28 @@
                         Picture. <span class="text-danger" title="required">*</span>
                     </label>
                     <div class="col-sm-8">
+                        <small class="text-info">
+                            <i class="fas fa-info-circle"></i> Picture must contain:<br/>
+                            min-width: 500px, max-width: 800px <br/>
+                            max-height: 500px, max-height: 800px
+                        </small>
                         <input type="file"
-                               class="form-control-file @error('image') is-invalid @enderror"
+                               class="form-control-file mt-2 @error('image') is-invalid @enderror"
                                id="image"
                                name="image[]"
-                               multiple="true">
+                               multiple="true"
+                               accept="image/gif,image/jpeg,image/png">
                         @error('image')
-                        <span class="invalid-feedback"
+                        <span class="text-danger"
                               role="alert">
                                 <strong>{{ $message }}</strong>
-                            </span>
+                        </span>
+                        @enderror
+                        @error('image.*')
+                        <span class="text-danger"
+                              role="alert">
+                                <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
                 </div>
@@ -130,7 +142,8 @@
                                placeholder="Product price"
                                class="form-control @error('price') is-invalid @enderror"
                                value="{{ old('price') }}"
-                               type="number">
+                               type="number"
+                               step=".01">
                         @error('price')
                         <span class="invalid-feedback"
                               role="alert">

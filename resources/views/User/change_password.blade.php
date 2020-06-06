@@ -14,7 +14,7 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row">
+                                <div class="row pt-4 pb-2">
                                     <div class="col-md-12">
                                         @include('components.app.user.change_password_form')
                                     </div>

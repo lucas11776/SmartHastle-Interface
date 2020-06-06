@@ -3,40 +3,40 @@
     @csrf
     @method('PATCH')
     <div class="form-group row">
-        <label for="name"
+        <label for="old_password"
                class="col-sm-4 col-form-label">
-            First Name
+            Current Password
         </label>
         <div class="col-sm-8">
-            <input id="name"
-                   name="Name"
-                   placeholder="First Name"
+            <input id="old_password"
+                   name="old_password"
+                   placeholder="Old password"
                    class="form-control here"
                    type="text">
         </div>
     </div>
     <div class="form-group row">
-        <label for="lastname"
+        <label for="password"
                class="col-sm-4 col-form-label">
-            Last Name
+            Password
         </label>
         <div class="col-sm-8">
-            <input id="lastname"
-                   name="Surname"
-                   placeholder="Last Name"
+            <input id="password"
+                   name="password"
+                   placeholder="New password"
                    class="form-control here"
                    type="text">
         </div>
     </div>
     <div class="form-group row">
-        <label for="email"
+        <label for="password_confirmation"
                class="col-sm-4 col-form-label">
-            Email *
+            Password Confirmation
         </label>
         <div class="col-sm-8">
-            <input id="email"
-                   name="email"
-                   placeholder="Email address"
+            <input id="password_confirmation"
+                   name="password_confirmation"
+                   placeholder="Confirm password"
                    class="form-control here"
                    required="required"
                    type="text">

@@ -12,10 +12,10 @@ trait ProductMock
     {
         return [
             'image' =>  [
-                UploadedFile::fake()->create('front.png', 1200),
-                UploadedFile::fake()->create('back.png', 1050),
-                UploadedFile::fake()->create('left.png', 1500),
-                UploadedFile::fake()->create('right.png', 1435),
+                UploadedFile::fake()->image('front.png', 550, 550),
+                UploadedFile::fake()->image('back.png', 500, 530),
+                UploadedFile::fake()->image('left.png', 543, 583),
+                UploadedFile::fake()->image('right.png', 545, 535),
             ],
             'category_id' => factory(Category::class)->create()->id,
             'name' => ($faker = Faker::create())->company,

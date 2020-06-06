@@ -60,6 +60,10 @@ Route::prefix('cart')->middleware(['auth'])->group(function () {
     Route::patch('', 'CartController@Update');
     Route::delete('', 'CartController@Destroy');
 });
+Route::prefix('order')->middleware(['auth'])->group(function () {
+    Route::post('', 'OrderController@Store');
+    Route::patch('{order}', 'OrderController@Update');
+});
 Route::prefix('checkout')->middleware(['auth'])->group(function () {
     Route::get('', 'CheckoutController@Index');
 });

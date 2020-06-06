@@ -25,7 +25,7 @@ class ProfilePictureRequest extends FormRequest
     {
         return [
             'image' => [
-                'required', 'image'
+                'required', 'mimes:jpeg,png'
             ]
         ];
     }

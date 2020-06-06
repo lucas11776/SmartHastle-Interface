@@ -28,7 +28,7 @@ class CartRequest extends FormRequest
     {
         return [
             'cartable_type' => [
-                'required', Rule::in(Cart::$cartable_types),
+                'required', Rule::in(Cart::CARTABLES),
             ],
             'cartable_id' => [
                 'required',  function ($attribute, $value, $fail) {

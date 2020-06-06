@@ -736,8 +736,9 @@ section
 
 .home
 {
-	width: 100%;
-	background: #4a4a4a;
+    width: 100%;
+    padding-top: 79px;
+    background: #4a4a4a;
 }
 .home_container
 {
