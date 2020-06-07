@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@Index');
 Route::get('products', 'HomeController@Products');
 Auth::routes();
-Route::prefix('category')->middleware(['auth.administrator'])->group(function () {
+Route::prefix('category')->middleware(['auth', 'auth.administrator'])->group(function () {
     Route::post('', 'CategoryController@Store');
     Route::delete('{category}', 'CategoryController@Destroy');
     Route::patch('{category}', 'CategoryController@Update');
 });
-Route::prefix('product')->middleware(['auth.administrator'])->group(function () {
+Route::prefix('product')->middleware(['auth', 'auth.administrator'])->group(function () {
     Route::post('', 'ProductController@Store');
     Route::patch('{product}', 'ProductController@Update');
     Route::delete('{product}', 'ProductController@Destroy');
@@ -40,6 +40,10 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth', 'auth.st
     });
     Route::prefix('users')->group(function () {
         Route::get('', 'UserController@Index');
+        Route::prefix('{user}')->group(function () {
+            Route::get('', 'UserController@View');
+            Route::get('orders', 'UserController@Orders');
+        });
     });
     Route::prefix('orders')->group(function () {
         Route::get('', 'OrderController@Index');
@@ -74,6 +78,7 @@ Route::prefix('cart')->middleware(['auth'])->group(function () {
 Route::prefix('order')->middleware(['auth'])->group(function () {
     Route::post('', 'OrderController@Store');
     Route::patch('{order}', 'OrderController@Update');
+    Route::delete('{order}', 'OrderController@Destroy')->middleware(['auth.staff']);
 });
 Route::prefix('checkout')->middleware(['auth'])->group(function () {
     Route::get('', 'CheckoutController@Index');

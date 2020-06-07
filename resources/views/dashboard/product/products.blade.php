@@ -12,4 +12,5 @@
         </a>
     </div>
     @include('dashboard.components.products', ['product.products' => $products])
+    {{ $products->links() }}
 @endsection

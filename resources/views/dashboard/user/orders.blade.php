@@ -3,15 +3,13 @@
     <!-- Heading -->
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h4 mb-0 text-gray-800">
-            <i class="fas fa-users-cog text-primary"></i> Accounts
+            <i class="fas fa-chart-pie text-primary"></i> Orders
         </h1>
-        <a href="{{ url('dashboard/users/staff') }}"
+        <a href="#"
            class="d-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-user-tie fa-sm text-white-50"></i>
-            Staff
+            <i class="fas fa-ticket-alt fa-sm text-white-50"></i>
+            Orders
         </a>
     </div>
-    {{ $users }}
-
-    {{ $users->links() }}
+    {{ $orders->links() }}
 @endsection

@@ -49,7 +49,6 @@ class OrderTest extends TestCase
        factory(Order::class)->times(5)->create();
 
        $this->json('GET', 'dashboard/orders/status/completed')
-           ->dump()
            ->assertOk();
    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('dashboard.category.categories');
+        $categories = Category::all();
+
+        return view('dashboard.category.categories', ['categories' => $categories]);
     }
 
     /**

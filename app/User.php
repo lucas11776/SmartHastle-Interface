@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use phpDocumentor\Reflection\Types\Boolean;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -74,6 +75,19 @@ class User extends Authenticatable implements JWTSubject
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, UsersRoles::class);
+    }
+
+    /**
+     * Check if user role exists.
+     *
+     * @param string $role
+     * @return bool
+     */
+    public function roleExists(string $role): Boolean
+    {
+        return $this->roles()
+            ->where('name', $role)
+            ->first() ? true : false;
     }
 
     /**

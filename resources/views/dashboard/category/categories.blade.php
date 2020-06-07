@@ -11,4 +11,5 @@
             Create
         </a>
     </div>
+    {{ $categories }}
 @endsection

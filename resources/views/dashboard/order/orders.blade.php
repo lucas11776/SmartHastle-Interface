@@ -11,4 +11,5 @@
             Work Space
         </a>
     </div>
+    {{ $orders->links() }}
 @endsection

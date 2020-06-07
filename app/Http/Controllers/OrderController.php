@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Order;
-use Illuminate\Contracts\View\Factory;
+use Exception;
+use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class OrderController extends Controller
 {
@@ -54,6 +55,21 @@ class OrderController extends Controller
     public function update(Order $order, OrderRequest $orderRequest)
     {
         $order->update($orderRequest->validated());
+
+        return redirect()->back();
+    }
+
+    /**
+     * Should delete order in storage.
+     *
+     * @param Order $order
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    public function destroy(Order $order)
+    {
+        $order->items()->delete();
+        $order->delete();
 
         return redirect()->back();
     }
