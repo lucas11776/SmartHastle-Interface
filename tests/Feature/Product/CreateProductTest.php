@@ -10,6 +10,18 @@ use Illuminate\Foundation\Testing\TestResponse;
 class CreateProductTest extends TestCase
 {
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loginAsAdministrator();
+    }
+
+    /**
      * Should create new product in storage.
      */
     public function testCreateProduct()

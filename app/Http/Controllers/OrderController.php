@@ -4,12 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Order;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\Redirector;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
+    /**
+     * Get user orders.
+     *
+     * @return Factory|View
+     */
+    public function index()
+    {
+        $orders = auth()->user()
+            ->orders()
+            ->paginate(12);
+
+        return view('user.orders', ['orders' => $orders]);
+    }
+
     /**
      * Create new user order in the storage.
      *

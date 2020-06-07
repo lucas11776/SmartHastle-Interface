@@ -9,6 +9,18 @@ use Tests\TestCase;
 class DeleteCategoryTest extends TestCase
 {
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loginAsAdministrator();
+    }
+
+    /**
      * Should delete category in storage.
      */
     public function testDeleteCategory()

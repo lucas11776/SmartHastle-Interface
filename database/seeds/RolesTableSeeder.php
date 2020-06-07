@@ -1,10 +1,11 @@
 <?php
 
+use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class UsersTableSeeder extends Seeder
+class RolesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-
+        foreach (Role::ROLES as $role)
+        {
+            factory(Role::class)->create(['name' => $role]);
+        }
     }
 }

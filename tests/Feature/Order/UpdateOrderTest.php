@@ -65,20 +65,20 @@ class UpdateOrderTest extends TestCase
     /**
      * Should try to update order with empty data.
      */
-//    public function testUpdateOrderWithInvalidStatus()
-//    {
-//        $data = [
-//            'status' => 'canceled'
-//        ];
-//
-//        $this->updateOrder($this->order->id, $data)
-//            ->assertJsonStructure([
-//                'message',
-//                'errors' => [
-//                    'status'
-//                ]
-//            ]);
-//    }
+    public function testUpdateOrderWithInvalidStatus()
+    {
+        $data = [
+            'status' => 'canceled'
+        ];
+
+        $this->updateOrder($this->order->id, $data)
+            ->assertJsonStructure([
+                'message',
+                'errors' => [
+                    'status'
+                ]
+            ]);
+    }
 
     /**
      * Make request to update order.

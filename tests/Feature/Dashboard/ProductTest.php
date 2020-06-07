@@ -17,7 +17,7 @@ class ProductTest extends TestCase
     {
         parent::setUp();
 
-        $this->loginAsUser();
+        $this->loginAsAdministrator();
     }
 
     /**

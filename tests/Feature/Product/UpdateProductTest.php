@@ -9,6 +9,18 @@ use Illuminate\Foundation\Testing\TestResponse;
 class UpdateProductTest extends TestCase
 {
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loginAsAdministrator();
+    }
+
+    /**
      * Should update product.
      */
     public function testUpdateProduct()

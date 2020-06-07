@@ -19,7 +19,7 @@ class DashboardTest extends TestCase
     {
         parent::setUp();
 
-        $this->loginAsUser();
+        $this->loginAsStaff();
     }
 
     /**

@@ -10,6 +10,18 @@ use Illuminate\Foundation\Testing\TestResponse;
 class DeleteProductTest extends TestCase
 {
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loginAsAdministrator();
+    }
+
+    /**
      * Should delete a product in storage.
      */
     public function testDeleteProduct()

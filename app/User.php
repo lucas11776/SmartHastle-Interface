@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +13,11 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    /**
+     * Default profile picture.
+     *
+     * @var string
+     */
     const DEFAULT_PROFILE_PICTURE = 'assets/default/images/profile-picture.png';
 
     /**
@@ -61,6 +67,16 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Get user roles.
+     *
+     * @return BelongsToMany
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, UsersRoles::class);
+    }
+
+    /**
      * Get user cart.
      *
      * @return HasMany
@@ -99,5 +115,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
 }

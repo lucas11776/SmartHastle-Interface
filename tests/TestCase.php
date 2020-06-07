@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Role;
 use Tests\Mocks\Mocks;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -19,6 +20,19 @@ abstract class TestCase extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
+
         Artisan::call('db:seed');
+
+        $this->applicationRoles();
+    }
+
+    /**
+     * Create application roles.
+     */
+    private function applicationRoles()
+    {
+        foreach (Role::ROLES as $role) {
+            Role::create(['name' => $role]);
+        }
     }
 }

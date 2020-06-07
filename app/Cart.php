@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Cart extends Model
 {
@@ -42,5 +43,15 @@ class Cart extends Model
     public function cartable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Get cart items.
+     *
+     * @return MorphTo
+     */
+    public function cartables(): MorphToMany
+    {
+        return $this->morphToMany();
     }
 }

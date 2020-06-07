@@ -10,6 +10,18 @@ use Illuminate\Foundation\Testing\TestResponse;
 class UpdateCategoryTest extends TestCase
 {
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loginAsAdministrator();
+    }
+
+    /**
      * Should update category in storage
      */
     public function testUpdateCategory()

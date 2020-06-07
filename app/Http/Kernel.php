@@ -65,7 +65,9 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cros' => \App\Http\Middleware\Cros::class,
         'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
-        'auth.guest' => \App\Http\Middleware\Guest::class
+        'auth.guest' => \App\Http\Middleware\Guest::class,
+        'auth.administrator' => \App\Http\Middleware\RedirectIfNotAdministrator::class,
+        'auth.staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
     ];
 
     /**

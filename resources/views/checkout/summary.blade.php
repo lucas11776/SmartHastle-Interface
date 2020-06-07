@@ -24,35 +24,29 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <!-- Cart Total -->
-                        <div class="col-md-8 col-lg-6 cart_col">
+                        <div class="col-md-10 col-lg-8 cart_col">
                             <div class="cart_total">
                                 <div class="cart_extra_content cart_extra_total">
                                     <div class="checkout_title">
                                         Order Summary
                                     </div>
                                     <ul class="cart_extra_total_list">
-                                        <li class="d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_extra_total_title">
-                                                Subtotal
-                                            </div>
-                                            <div class="cart_extra_total_value ml-auto">
-                                                $29.90
-                                            </div>
-                                        </li>
-                                        <li class="d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_extra_total_title">
-                                                Shipping
-                                            </div>
-                                            <div class="cart_extra_total_value ml-auto">
-                                                Free
-                                            </div>
-                                        </li>
+                                        @foreach($cart as $item)
+                                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                                <div class="cart_extra_total_title">
+                                                    {{ Str::limit($item->cartable->name, 50) }}
+                                                </div>
+                                                <div class="cart_extra_total_value ml-auto">
+                                                    R{{ number_format($item->cartable->price, 2) }}
+                                                </div>
+                                            </li>
+                                        @endforeach
                                         <li class="d-flex flex-row align-items-center justify-content-start">
                                             <div class="cart_extra_total_title">
                                                 Total
                                             </div>
                                             <div class="cart_extra_total_value ml-auto">
-                                                $29.90
+                                                R{{ $total }}
                                             </div>
                                         </li>
                                     </ul>

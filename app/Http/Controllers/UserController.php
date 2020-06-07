@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleExistsRequest;
+use App\Http\Requests\RoleNotExistsRequest;
+use App\Http\Requests\RoleRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\ProfilePictureRequest;
+use App\Role;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -29,15 +34,6 @@ class UserController extends Controller
     public function favorites()
     {
         return view('user.favorites');
-    }
-    /**
-     * Get user orders.
-     *
-     * @return Factory|View
-     */
-    public function orders()
-    {
-        return view('user.orders');
     }
 
     /**
@@ -75,6 +71,40 @@ class UserController extends Controller
         $path = Storage::put('public', $image);
 
         $this->changeProfilePicture($path);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Add user role.
+     *
+     * @param User $user
+     * @param RoleNotExistsRequest $roleNotExistsRequest
+     * @return RedirectResponse
+     */
+    public function addRole(User $user, RoleNotExistsRequest $roleNotExistsRequest) {
+        $role = Role::where('name', $roleNotExistsRequest->validated()['role'])->first();
+
+        $user->roles()->attach($role->id);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Remove user role.
+     *
+     * @param User $user
+     * @param RoleExistsRequest $roleExistsRequest
+     * @return RedirectResponse
+     */
+    public function removeRole(User $user, RoleExistsRequest $roleExistsRequest)
+    {
+        $role = $roleExistsRequest->validated()['role'];
+
+        $user->roles()
+            ->where('name', $role)
+            ->first()
+            ->pivot->delete();
 
         return redirect()->back();
     }

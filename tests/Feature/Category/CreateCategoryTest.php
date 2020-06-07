@@ -9,6 +9,18 @@ use Illuminate\Foundation\Testing\TestResponse;
 class CreateCategoryTest extends TestCase
 {
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loginAsAdministrator();
+    }
+
+    /**
      * Should create category.
      */
     public function testCreateCategory()

@@ -17,7 +17,7 @@ class CategoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->loginAsUser();
+        $this->loginAsAdministrator();
     }
 
     /**
