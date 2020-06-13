@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -79,5 +80,20 @@ class Product extends Model
         $str = explode('.', number_format($price, 2)) ;
 
         return end($str);
+    }
+
+    /**
+     * Get products total price.
+     *
+     * @param HasMany $items
+     * @return float
+     */
+    public static function price(HasMany $items): float
+    {
+        $total = $items->get()->sum(function($item) {
+            return (float) $item->product->price;
+        });
+
+        return number_format($total, 2);
     }
 }

@@ -42,7 +42,7 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth', 'auth.st
         Route::get('', 'UserController@Index');
         Route::prefix('{user}')->group(function () {
             Route::get('', 'UserController@View');
-            Route::get('orders', 'UserController@Orders');
+            Route::get('orders', 'UserController@order');
         });
     });
     Route::prefix('orders')->group(function () {

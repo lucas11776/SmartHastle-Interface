@@ -1,3 +1,7 @@
+@inject('user', App\User)
+@inject('cart', App\Cart)
+@inject('order', App\Order)
+@inject('product', App\Product)
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -6,7 +10,9 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Users (Total)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{ $user->count() }}
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -21,11 +27,13 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Orders (Unread)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Orders (Total)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{ $order->count() }}
+                        </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -37,11 +45,13 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Messages</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Cart (Total)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{ $cart->count() }}
+                        </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        <i class="fas fa-shopping-basket fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -53,11 +63,13 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Income (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Products (Total)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{ $product->count() }}
+                        </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>

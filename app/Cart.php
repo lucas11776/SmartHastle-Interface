@@ -40,6 +40,16 @@ class Cart extends Model
      *
      * @return MorphTo
      */
+    public function product(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get cart item.
+     *
+     * @return MorphTo
+     */
     public function cartable(): MorphTo
     {
         return $this->morphTo();

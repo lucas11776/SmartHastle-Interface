@@ -5,11 +5,6 @@
         <h1 class="h4 mb-0 text-gray-800">
             <i class="fas fa-chart-pie text-primary"></i> Summary
         </h1>
-        <a href="#"
-               class="d-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-ticket-alt fa-sm text-white-50"></i>
-            Orders
-        </a>
     </div>
     <!-- Application Summary Details -->
     @include('dashboard.components.summary')

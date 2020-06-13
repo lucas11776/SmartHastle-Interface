@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <!-- Footer Links -->
-                <div class="col-lg-4 footer_col">
+                <div class="col-lg-4 footer_col d-none">
                     <div class="footer_contact">
                         <div class="footer_title">
                             Stay in Touch
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <!-- Footer Contact -->
-                <div class="col-lg-4 footer_col">
+                <div class="col-lg-4 offset-lg-4 footer_col">
                     <div class="footer_contact">
                         <div class="footer_social">
                             <div class="footer_title">

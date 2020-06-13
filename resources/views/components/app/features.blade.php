@@ -7,12 +7,12 @@
                     <div class="feature_left">
                         <div class="feature_icon">
                             <img src="{{ url('assets/app/images/icon_1.svg') }}"
-                                 alt="Fast Secure Payments">
+                                 alt="Cart">
                         </div>
                     </div>
                     <div class="feature_right d-flex flex-column align-items-start justify-content-center">
                         <div class="feature_title">
-                            Fast Secure Payments
+                            Cart.
                         </div>
                     </div>
                 </div>
@@ -23,12 +23,12 @@
                     <div class="feature_left">
                         <div class="feature_icon ml-auto mr-auto">
                             <img src="{{ url('assets/app/images/icon_2.svg') }}"
-                                 alt="Premium Products">
+                                 alt="Order Online">
                         </div>
                     </div>
                     <div class="feature_right d-flex flex-column align-items-start justify-content-center">
                         <div class="feature_title">
-                            Premium Products
+                            Order Online.
                         </div>
                     </div>
                 </div>
@@ -39,12 +39,12 @@
                     <div class="feature_left">
                         <div class="feature_icon">
                             <img src="{{ url('assets/app/images/icon_3.svg') }}"
-                                 alt="Free Delivery">
+                                 alt="Favorites">
                         </div>
                     </div>
                     <div class="feature_right d-flex flex-column align-items-start justify-content-center">
                         <div class="feature_title">
-                            Free Delivery
+                            Favorites.
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ class OrderController extends Controller
     {
         $orders = auth()->user()
             ->orders()
+            ->orderBy('created_at', 'DESC')
             ->paginate(12);
 
         return view('user.orders', ['orders' => $orders]);
@@ -41,6 +42,8 @@ class OrderController extends Controller
         ];
 
         $this->create($data)->item()->createMany($cart);
+
+        auth()->user()->cart()->delete();
 
         return redirect('my/orders');
     }
@@ -71,7 +74,7 @@ class OrderController extends Controller
         $order->items()->delete();
         $order->delete();
 
-        return redirect()->back();
+        return redirect('dashboard/orders');
     }
 
     /**

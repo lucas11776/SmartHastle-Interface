@@ -1,8 +1,10 @@
 <div class="product">
     <div class="product_image">
-        <img src="{{ $product->image->url }}"
-             alt="{{ $product->name }}"
-             style="width: 100%; height: 300px">
+        <a href="{{ url($product->slug) }}">
+            <img src="{{ $product->image->url }}"
+                 alt="{{ $product->name }}"
+                 style="width: 100%; height: 300px">
+        </a>
     </div>
     <div class="product_content">
         <div class="product_info d-flex flex-row align-items-start justify-content-start">
@@ -10,7 +12,7 @@
                 <div>
                     <div class="product_name">
                         <a href="{{ url($product->slug) }}">
-                            {{ $product->name }}
+                            {{ Str::limit($product->name, 30) }}
                         </a>
                     </div>
                     <div class="product_category">

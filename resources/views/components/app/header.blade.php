@@ -19,13 +19,16 @@
         <nav class="main_nav">
             <ul class="d-flex flex-row align-items-start justify-content-start">
                 @auth()
-                    <li>
-                        <a href="{{ url('dashboard') }}">
-                            <i class="fas fa-store"></i> Dashboard
-                        </a>
-                    </li>
+                    @if(auth()->user()->isStaff())
+                        <li>
+                            <a href="{{ url('dashboard') }}">
+                                <i class="fas fa-store"
+                                   style="position: relative; top: 4px;"
+                                   title="Dashboard"></i>
+                            </a>
+                        </li>
+                    @endif
                 @endauth
-
                 @foreach($categories::all() as $category)
                     <li>
                         <a href="{{ 'categories/' . $category->slug }}">
@@ -38,15 +41,19 @@
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
             <!-- Search -->
             <div class="header_search">
-                <form action="#"
+                <form action="{{ url('search') }}"
+                      method="GET"
                       id="header_search_form">
+                    @csrf
                     <input type="text"
+                           name="q"
                            class="search_input"
-                           placeholder="Search Item"
+                           placeholder="Search Product..."
+                           value="{{ old('password') }}"
                            required="required">
                     <button class="header_search_button">
-                        <img src="assets/app/images/search.png"
-                             alt="">
+                        <img src="{{ url('assets/app/images/search.png') }}"
+                             alt="Search">
                     </button>
                 </form>
             </div>

@@ -17,9 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('status', 'waiting')
-            ->orderBy('create_at', 'ASC')
-            ->paginate();
+        $orders = Order::orderBy('created_at', 'DESC')->paginate();
 
         return view('dashboard.order.orders', ['orders' => $orders]);
     }
@@ -45,7 +43,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('status', $status)
             ->orderBy('created_at', $status == 'completed' || $status == 'declined' ? 'DESC' : 'ASC')
-            ->paginate();
+            ->paginate(12);
 
         return view('dashboard.order.orders', ['orders' => $orders]);
     }

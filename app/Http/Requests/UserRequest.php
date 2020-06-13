@@ -33,7 +33,8 @@ class UserRequest extends FormRequest
                 'required', 'string', 'max:50'
             ],
             'email' => [
-                'required', 'email', Rule::unique(User::class)->ignore($this->user || auth()->user())
+                'required', 'email',
+                Rule::unique(User::class)->ignore(is_null($this->user) ? auth()->user() : $this->user)
             ],
             'cellphone_number' => [
                 'nullable', 'string', 'min:8', 'max:30'

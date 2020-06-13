@@ -26,7 +26,7 @@
                         Total
                     </div>
                     <div class="cart_extra_total_value ml-auto">
-                        <?php
+                       R<?php
                         $cartTotal = $cart->sum(function ($item) {
                             return $item->cartable->price;
                         });

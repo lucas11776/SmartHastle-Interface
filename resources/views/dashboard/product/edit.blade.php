@@ -139,12 +139,21 @@
                 </div>
                 <div class="form-group row">
                     <div class="offset-sm-4 col-sm-8 text-right">
+                        <button name="submit"
+                                type="button"
+                                class="btn btn-danger"
+                                data-toggle="modal"
+                                data-target="#delete-product-{{ $product->id }}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
                         <button name="submit" type="submit" class="btn btn-primary">
                             <i class="fas fa-edit"></i> Edit
                         </button>
                     </div>
                 </div>
             </form>
+            <!-- Delete product model-->
+            @include('components.dashboard.product.delete', ['product' => $product])
         </div>
     </div>
 @endsection

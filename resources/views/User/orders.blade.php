@@ -16,10 +16,14 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-
+                                        @include('components.app.user.profile_details', ['user' => $orders->first()->user])
                                     </div>
                                 </div>
-
+                                <div class="row pt-2">
+                                    <div class="col-md-12">
+                                        @include('components.app.order.orders', ['orders' => $orders])
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

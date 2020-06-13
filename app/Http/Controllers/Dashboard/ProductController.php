@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('id', 'DESC')
-            ->paginate(16);
+            ->paginate(12);
 
         return view('dashboard.product.products', ['products' => $products]);
     }

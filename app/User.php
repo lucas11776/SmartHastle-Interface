@@ -78,16 +78,31 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * Check if user role exists.
+     * Check if user is staff.
      *
-     * @param string $role
      * @return bool
      */
-    public function roleExists(string $role): Boolean
+    public function isStaff(): bool
     {
-        return $this->roles()
-            ->where('name', $role)
-            ->first() ? true : false;
+        $exists = $this->roles->filter(function(Role $role) {
+            return $role->name == 'administrator' || $role == 'staff';
+        });
+
+        return $exists->count() ? true : false;
+    }
+
+    /**
+     * Check if user is administrator.
+     *
+     * @return bool
+     */
+    public function isAdministrator(): bool
+    {
+        $exists = $this->roles->filter(function(Role $role) {
+            return $role->name == 'administrator';
+        });
+
+        return $exists->count() ? true : false;
     }
 
     /**

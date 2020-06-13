@@ -31,14 +31,25 @@
                     </span>
                 @endif
             </div>
-            <div class="mt-2">
-                @include('components.app.user.change_profile_picture_form')
-            </div>
+            @auth()
+                @if(auth()->user()->id == $user->id)
+                    <div class="mt-2">
+                        @include('components.app.user.change_profile_picture_form')
+                    </div>
+                @endif
+            @endauth
         </div>
         <div class="text-center text-sm-right">
-            <span class="badge badge-secondary">administrator</span>
+            @foreach($user->roles as $role)
+                <span class="badge badge-secondary">
+                    {{ $role->name }}
+                </span>
+            @endforeach
             <div class="text-muted">
-                <small>Joined {{ date('l d M Y h:ma', strtotime($user->created_at)) }}</small>
+                <small>
+                    <i class="fas fa-calendar-alt text-primary"></i>
+                    Joined {{ date('l d M Y h:ma', strtotime($user->created_at)) }}
+                </small>
             </div>
         </div>
     </div>

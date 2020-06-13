@@ -34,7 +34,7 @@
                                         @foreach($cart as $item)
                                             <li class="d-flex flex-row align-items-center justify-content-start">
                                                 <div class="cart_extra_total_title">
-                                                    {{ Str::limit($item->cartable->name, 50) }}
+                                                    {{ Str::limit($item->cartable->name, 10) }}
                                                 </div>
                                                 <div class="cart_extra_total_value ml-auto">
                                                     R{{ number_format($item->cartable->price, 2) }}
@@ -57,7 +57,16 @@
                                             confirm your order.
                                         </p>
                                     </div>
-                                    <div class="checkout_button trans_200"><a href="checkout.html">place order</a></div>
+                                    <form id="create-order-form"
+                                          action="{{ url('order') }}"
+                                          method="POST">
+                                        @csrf
+                                    </form>
+                                    <div class="checkout_button trans_200"
+                                         onclick="event.preventDefault();document.getElementById('create-order-form').submit()"
+                                         style="cursor: pointer;">
+                                        <a>place order</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

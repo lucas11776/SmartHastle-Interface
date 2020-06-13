@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class OrderItem extends Model
 {
@@ -14,4 +15,14 @@ class OrderItem extends Model
     protected $fillable = [
         'user_id', 'order_id', 'orderizable_id', 'orderizable_type', 'size'
     ];
+
+    /**
+     * Get cart item.
+     *
+     * @return MorphTo
+     */
+    public function product(): MorphTo
+    {
+        return $this->morphTo('orderizable');
+    }
 }

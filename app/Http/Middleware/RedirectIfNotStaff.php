@@ -23,7 +23,7 @@ class RedirectIfNotStaff
             ->first();
 
         if(is_null($staff)) {
-            return redirect()->back(401);
+            return redirect()->back();
         }
 
         return $next($request);

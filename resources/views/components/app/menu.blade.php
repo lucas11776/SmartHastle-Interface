@@ -1,14 +1,19 @@
 <div class="menu">
     <!-- Search -->
     <div class="menu_search">
-        <form action="#" id="menu_search_form" class="menu_search_form">
+        <form action="{{ url('search') }}"
+              method="GET"
+              id="menu_search_form"
+              class="menu_search_form">
+            @csrf
             <input type="text"
+                   name="q"
                    class="search_input"
-                   placeholder="Search Item"
+                   placeholder="Search Product..."
                    required="required">
             <button class="menu_search_button">
                 <img src="{{ url('assets/app/images/search.png') }}"
-                     alt="">
+                     alt="Search">
             </button>
         </form>
     </div>
@@ -34,10 +39,27 @@
             @endguest
             @auth()
                 <li>
-                    <a href="{{ url('dashboard') }}">
-                        <i class="fas fa-store"></i> Dashboard
+                    <a href="{{ url('cart') }}">
+                        <i class="fas fa-shopping-cart"></i> Cart
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('my/favorites') }}">
+                        <i class="fas fa-heart"></i> Favorites
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('my/orders') }}">
+                        <i class="fas fa-ticket-alt"></i> Orders
+                    </a>
+                </li>
+                @if(auth()->user()->isStaff())
+                    <li>
+                        <a href="{{ url('dashboard') }}">
+                            <i class="fas fa-store"></i> Dashboard
+                        </a>
+                    </li>
+                @endif
                 <li>
                     <a href="{{ url('logout')  }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

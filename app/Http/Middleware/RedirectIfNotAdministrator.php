@@ -22,7 +22,7 @@ class RedirectIfNotAdministrator
             ->first();
 
         if(is_null($administrator)) {
-            return redirect()->back(401);
+            return redirect()->back();
         }
 
         return $next($request);
