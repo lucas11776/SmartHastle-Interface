@@ -20,12 +20,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = auth()->user()
-            ->orders()
+        $user = auth()->user();
+        $orders = $user->orders()
             ->orderBy('created_at', 'DESC')
             ->paginate(12);
 
-        return view('user.orders', ['orders' => $orders]);
+        return view('user.orders', [
+            'user' => $user,
+            'orders' => $orders,
+        ]);
     }
 
     /**

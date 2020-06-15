@@ -5,11 +5,16 @@
         <h1 class="h4 mb-0 text-gray-800">
             <i class="fas fa-chart-pie text-primary"></i> Orders
         </h1>
-        <a href="#"
-           class="d-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-ticket-alt fa-sm text-white-50"></i>
-            Orders
-        </a>
     </div>
-    {{ $orders->links() }}
+    <div class="row">
+        <div class="col-12 pb-4">
+            @include('components.dashboard.order.status')
+        </div>
+        <div class="col-12">
+            @include('components.dashboard.order.orders', ['orders' => $orders])
+        </div>
+        <div class="col-12 pt-2 pb-2">
+            {{ $orders->links() }}
+        </div>
+    </div>
 @endsection

@@ -42,7 +42,7 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth', 'auth.st
         Route::get('', 'UserController@Index');
         Route::prefix('{user}')->group(function () {
             Route::get('', 'UserController@View');
-            Route::get('orders', 'UserController@order');
+            Route::get('orders', 'UserController@orders');
         });
     });
     Route::prefix('orders')->group(function () {
@@ -77,8 +77,15 @@ Route::prefix('cart')->middleware(['auth'])->group(function () {
 });
 Route::prefix('order')->middleware(['auth'])->group(function () {
     Route::post('', 'OrderController@Store');
-    Route::patch('{order}', 'OrderController@Update');
-    Route::delete('{order}', 'OrderController@Destroy')->middleware(['auth.staff']);
+    Route::prefix('{order}')->group(function () {
+        Route::patch('', 'OrderController@Update');
+        Route::delete('', 'OrderController@Destroy')->middleware(['auth.staff']);
+        Route::prefix('item')->group(function () {
+            Route::prefix('{orderItem}')->group(function () {
+                Route::patch('', 'OrderItemController@Update');
+            });
+        });
+    });
 });
 Route::prefix('checkout')->middleware(['auth'])->group(function () {
     Route::get('', 'CheckoutController@Index');
