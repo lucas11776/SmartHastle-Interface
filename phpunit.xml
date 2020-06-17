@@ -11,12 +11,41 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+        <!-- All Unit Test -->
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-
+        <!-- All Feature Test -->
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+        <!-- All Feature Single Tests -->
+        <testsuite name="Authentication">
+            <directory suffix="Test.php">./tests/Feature/Authentication</directory>
+        </testsuite>
+        <testsuite name="Cart">
+            <directory suffix="Test.php">./tests/Feature/Cart</directory>
+        </testsuite>
+        <testsuite name="Category">
+            <directory suffix="Test.php">./tests/Feature/Category</directory>
+        </testsuite>
+        <testsuite name="Checkout">
+            <directory suffix="Test.php">./tests/Feature/Checkout</directory>
+        </testsuite>
+        <testsuite name="Dashboard">
+            <directory suffix="Test.php">./tests/Feature/Dashboard</directory>
+        </testsuite>
+        <testsuite name="Favorite">
+            <directory suffix="Test.php">./tests/Feature/Favorite</directory>
+        </testsuite>
+        <testsuite name="Order">
+            <directory suffix="Test.php">./tests/Feature/Order</directory>
+        </testsuite>
+        <testsuite name="Product">
+            <directory suffix="Test.php">./tests/Feature/Product</directory>
+        </testsuite>
+        <testsuite name="User">
+            <directory suffix="Test.php">./tests/Feature/User</directory>
         </testsuite>
     </testsuites>
     <filter>

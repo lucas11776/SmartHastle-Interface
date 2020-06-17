@@ -16,6 +16,8 @@ class UserTest extends TestCase
     {
         parent::setUp();
 
+        factory(User::class)->times(2)->create();
+
         $this->loginAsAdministrator();
     }
 
@@ -33,7 +35,7 @@ class UserTest extends TestCase
      */
     public function testGetDashboardSingleUserAccount()
     {
-        $user = factory(User::class)->create();
+        $user = User::first();
 
         $this->json('GET', 'dashboard/users/' . $user->id)
             ->assertOk();
@@ -42,11 +44,22 @@ class UserTest extends TestCase
     /**
      * Should get single user orders.
      */
-    public function testGetDashboardSingleUserOrders()
+    public function testGetDashboardUserOrders()
     {
-        $user = factory(User::class)->create();
+        $user = User::first();
 
         $this->json('GET', 'dashboard/users/' . $user->id . '/orders')
+            ->assertOk();
+    }
+
+    /**
+     * Should get all user favorite products.
+     */
+    public function testGetDashboardUserFavorites()
+    {
+        $user = User::first();
+
+        $this->json('GET', 'dashboard/users/' . $user->id . '/favorites')
             ->assertOk();
     }
 }

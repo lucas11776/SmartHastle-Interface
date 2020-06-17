@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Cart;
-use App\Product;
+use App\Favorite;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CartRequest extends FormRequest
+class FavoriteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,19 +26,16 @@ class CartRequest extends FormRequest
     public function rules()
     {
         return [
-            'cartable_type' => [
-                'required', Rule::in(Cart::CARTABLES),
+            'favoriteable_type' => [
+                'required', Rule::in(Favorite::FAVORITEABLES)
             ],
-            'cartable_id' => [
-                'required',  function ($attribute, $value, $fail) {
-                    if(class_exists($class = $this->request->get('cartable_type')))
+            'favoriteable_id' => [
+                'required', function($attribute, $value, $fail) {
+                    if(class_exists($class = $this->request->get('favoriteable_type')))
                         ! is_null($class::where('id', $value)->first())  ?: $fail($attribute . ' does not exist.');
                     else
                         $fail($attribute . ' does not exist in code base.');
                 }
-            ],
-            'size' => [
-                'nullable', 'string', Rule::in(Product::$sizes)
             ]
         ];
     }

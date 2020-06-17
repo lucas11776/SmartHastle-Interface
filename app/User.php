@@ -126,6 +126,16 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Get user orders.
+     *
+     * @return HasMany
+     */
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

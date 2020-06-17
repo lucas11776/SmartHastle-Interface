@@ -27,7 +27,7 @@ class AddToCartTest extends TestCase
     {
         $data = $this->CartMock();
 
-        $data['cartable_type'] = User::class;
+        $data['cartable_type'] = 'App\Exist';
 
         $this->addToCart($data)
             ->assertJsonStructure([

@@ -43,6 +43,7 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth', 'auth.st
         Route::prefix('{user}')->group(function () {
             Route::get('', 'UserController@View');
             Route::get('orders', 'UserController@orders');
+            Route::get('favorites', 'UserController@Favorites');
         });
     });
     Route::prefix('orders')->group(function () {
@@ -66,6 +67,15 @@ Route::prefix('user')->middleware(['auth'])->group(function() {
     Route::prefix('{user}/role')->group(function () {
         Route::post('', 'UserController@AddRole');
         Route::delete('', 'UserController@RemoveRole');
+    });
+});
+Route::prefix('favorite')->middleware(['auth'])->group(function () {
+    Route::post('', 'FavoriteController@Create');
+    Route::prefix('{favorite}')->group(function() {
+        Route::delete('', 'FavoriteController@Destroy');
+        Route::prefix('to')->group(function() {
+            Route::delete('cart', 'FavoriteController@ToCart');
+        });
     });
 });
 Route::prefix('cart')->middleware(['auth'])->group(function () {
