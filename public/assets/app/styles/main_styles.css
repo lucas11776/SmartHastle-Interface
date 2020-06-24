@@ -742,6 +742,12 @@ section
 	min-height: 100vh;
 	padding-top: 79px;
 }
+@media (max-width: 320px) {
+    .home {
+        min-height: 130vh;
+    }
+}
+
 .home_slider_container
 {
 	width: 100%;

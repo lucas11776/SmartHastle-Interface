@@ -7,9 +7,9 @@
                 <div class="d-flex flex-row align-items-center justify-content-start">
                     <div>
                         <img src="{{ url('assets/app/images/logo_1.png') }}"
-                             alt="SmartHassle">
+                             alt="SmartHustle">
                     </div>
-                    <div>SmartHassle</div>
+                    <div>SmartHustle</div>
                 </div>
             </a>
         </div>

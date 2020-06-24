@@ -33,12 +33,12 @@ class FavoriteController extends Controller
      */
     public function toCart(Favorite $favorite)
     {
-        $favoriteItem = auth()->user()->favorites()->where($favorite->only([
+        auth()->user()->favorites()->where($favorite->only([
             'favoriteable_id', 'favoriteable_type'
         ]))->firstOrFail();
 
         $this->moveFavoriteToCart($favorite);
-        $favoriteItem->delete();
+        $favorite->delete();
 
         return redirect()->back()
             ->with('message', 'Favorite has been moved to cart.');

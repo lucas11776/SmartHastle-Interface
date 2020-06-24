@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Mail\OrderStaffNotification;
+use App\Mail\OrderUserNotification;
 use App\Order;
+use App\Role;
 use Exception;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use App\Http\Requests\OrderRequest;
@@ -21,9 +26,7 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $orders = $user->orders()
-            ->orderBy('created_at', 'DESC')
-            ->paginate(12);
+        $orders = $user->orders()->orderBy('created_at', 'DESC')->paginate(12);
 
         return view('user.orders', [
             'user' => $user,
@@ -38,15 +41,9 @@ class OrderController extends Controller
      */
     public function store()
     {
-        $cart = $this->cartToOrderItems();
-        $data = [
-            'user_id' => auth()->user()->id,
-            'status' => 'waiting'
-        ];
+        $order = $this->createOrderFromCart();
 
-        $this->create($data)->item()->createMany($cart);
-
-        auth()->user()->cart()->delete();
+        $this->orderNotification($order);
 
         return redirect('my/orders');
     }
@@ -81,6 +78,22 @@ class OrderController extends Controller
     }
 
     /**
+     * Create new order user items in cart.
+     *
+     * @return Order
+     */
+    protected function createOrderFromCart(): Order
+    {
+        $order = auth()->user()->orders()->create(['status' => 'waiting']);
+
+        $order->item()->createMany($this->cartToOrderItems());
+
+        auth()->user()->cart()->delete();
+
+        return $order;
+    }
+
+    /**
      * Create order in storage.
      *
      * @param array $data
@@ -108,5 +121,16 @@ class OrderController extends Controller
                 'size' => $cart->size
             ];
         })->toArray();
+    }
+
+    /**
+     * Notify user and staff members of new order request.
+     *
+     * @param Order $order
+     */
+    protected function orderNotification(Order $order): void
+    {
+        Mail::to($order->user)->send(new OrderUserNotification($order));
+        Mail::to(Role::staff())->send(new OrderStaffNotification($order));
     }
 }

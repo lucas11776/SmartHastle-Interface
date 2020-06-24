@@ -13,14 +13,14 @@
                                              alt="">
                                     </div>
                                     <div>
-                                        SmartHassle
+                                        SmartHustle
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="footer_about_text">
                             <p>
-                                SmartHassle the best of local design for hassles.
+                                SmartHustle the best of local design for hassles.
                             </p>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                 <div class="col">
                     <div class="footer_bar_content d-flex flex-md-row flex-column align-items-center justify-content-start">
                         <div class="copyright order-md-1 order-2">
-                            Copyright &copy; SmartHassle {{ date('Y') }} |
+                            Copyright &copy; SmartHustle {{ date('Y') }} |
                             <i class="fas fa-laptop-code"></i> Developer
                             <a href="http://themba.website"
                                 _blank> themba.website

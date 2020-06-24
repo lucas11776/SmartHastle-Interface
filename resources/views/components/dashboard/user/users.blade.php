@@ -48,7 +48,7 @@
                 {{ $user->cart->count() }}
             </td>
             <td>
-                ---
+                {{ $user->favorites->count() }}
             </td>
         </tr>
     @endforeach
