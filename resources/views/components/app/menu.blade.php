@@ -9,7 +9,8 @@
             <input type="text"
                    name="q"
                    class="search_input"
-                   placeholder="Search Product..."
+                   placeholder="Search for a product..."
+                   value="{{ request()->get('q') }}"
                    required="required">
             <button class="menu_search_button">
                 <img src="{{ url('assets/app/images/search.png') }}"

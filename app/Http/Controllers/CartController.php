@@ -41,7 +41,9 @@ class CartController extends Controller
 
         $this->create($data);
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('success', 'Item has been add to cart.');
     }
 
     /**
@@ -58,7 +60,9 @@ class CartController extends Controller
             ->where('id', $inCartRequest->validated()['id'])
             ->update($cartRequest->validated());
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('success', 'Item has been updated in cart.');
     }
 
     /**
@@ -70,7 +74,9 @@ class CartController extends Controller
     {
         auth()->user()->cart()->delete();
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('info', 'Cart has been clear successfully.');
     }
 
     /**
@@ -85,7 +91,9 @@ class CartController extends Controller
 
         auth()->user()->cart()->where('id', $data['id'])->delete();
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('success', 'Item has been deleted in cart.');
     }
 
     /**

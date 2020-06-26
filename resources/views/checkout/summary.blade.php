@@ -31,7 +31,7 @@
                                         Order Summary
                                     </div>
                                     <ul class="cart_extra_total_list">
-                                        @foreach($cart as $item)
+                                        @foreach($user->cart as $item)
                                             <li class="d-flex flex-row align-items-center justify-content-start">
                                                 <div class="cart_extra_total_title">
                                                     {{ Str::limit($item->cartable->name, 10) }}
@@ -46,7 +46,7 @@
                                                 Total
                                             </div>
                                             <div class="cart_extra_total_value ml-auto">
-                                                R{{ $total }}
+                                                R{{ $user->cartTotal() }}
                                             </div>
                                         </li>
                                     </ul>

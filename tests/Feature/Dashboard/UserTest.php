@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Dashboard;
 
+use App\Order;
 use App\User;
 use Tests\TestCase;
 
@@ -31,6 +32,15 @@ class UserTest extends TestCase
     }
 
     /**
+     * Should get user by role in database.
+     */
+    public function testGetDashboardUsersByRole()
+    {
+        $this->json('GET', 'dashboard/users/role/staff')
+            ->assertOk();
+    }
+
+    /**
      * Should get single user account.
      */
     public function testGetDashboardSingleUserAccount()
@@ -53,6 +63,19 @@ class UserTest extends TestCase
     }
 
     /**
+     * Should get single user order in dashboard.
+     */
+    public function testGetDashboardUserSingleOrder()
+    {
+        $user = User::query()->first();
+        $order = factory(Order::class)
+            ->create(['user_id' => $user->id, 'status' => 'approved']);
+
+        $this->json('GET', 'dashboard/users/' . $user->id . '/orders/' . $order->id)
+            ->assertOk();
+    }
+
+    /**
      * Should get all user favorite products.
      */
     public function testGetDashboardUserFavorites()
@@ -60,6 +83,17 @@ class UserTest extends TestCase
         $user = User::first();
 
         $this->json('GET', 'dashboard/users/' . $user->id . '/favorites')
+            ->assertOk();
+    }
+
+    /**
+     * Should get all user product in cart.
+     */
+    public function testGetDashboardUserCart()
+    {
+        $user = User::first();
+
+        $this->json('GET', 'dashboard/users/' . $user->id . '/cart')
             ->assertOk();
     }
 }

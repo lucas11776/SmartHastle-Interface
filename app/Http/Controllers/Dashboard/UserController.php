@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\Role;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -17,7 +19,25 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('create_at', 'DESC')
+        $users = User::query()
+            ->orderBy('create_at', 'DESC')
+            ->paginate(20);
+
+        return view('dashboard.user.users', ['users' => $users]);
+    }
+
+    /**
+     * Get users by role.
+     *
+     * @param string $role
+     * @return Application|Factory|View
+     */
+    public function byRole(string $role)
+    {
+        $users = Role::query()
+            ->where('name', $role)
+            ->firstOrFail()
+            ->users()
             ->paginate(20);
 
         return view('dashboard.user.users', ['users' => $users]);
@@ -46,7 +66,35 @@ class UserController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate();
 
-        return view('dashboard.user.orders', ['orders' => $orders]);
+        return view('dashboard.user.orders', [
+            'orders' => $orders,
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * Get single user order.
+     *
+     * @param User $user
+     * @param string $order
+     * @return Application|Factory|View
+     */
+    public function singleOrder(User $user, string $order)
+    {
+        $order = $user->orders()->findOrFail($order);
+
+        return view('dashboard.user.order', ['order' => $order]);
+    }
+
+    /**
+     * Get user cart.
+     *
+     * @param User $user
+     * @return Application|Factory|View
+     */
+    public function cart(User $user)
+    {
+        return view('dashboard.user.cart', ['user' => $user]);
     }
 
     /**

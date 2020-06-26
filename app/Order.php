@@ -56,4 +56,16 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    /**
+     * Get order total price.
+     *
+     * @return float
+     */
+    public function total(): float
+    {
+        return $this->items()->get()->sum(function(OrderItem $item) {
+            return (float) $item->product->price;
+        });
+    }
 }

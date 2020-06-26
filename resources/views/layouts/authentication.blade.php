@@ -26,6 +26,8 @@
     </div>
 </div>
 
+@include('components.notification.alert')
+
 <!-- Bootstrap core JavaScript-->
 <script src="{{ url('assets/dashboard/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -9,7 +9,9 @@
                         <img src="{{ url('assets/app/images/logo_1.png') }}"
                              alt="SmartHustle">
                     </div>
-                    <div>SmartHustle</div>
+                    <div>
+                        {{ env('APP_NAME') }}
+                    </div>
                 </div>
             </a>
         </div>
@@ -23,11 +25,23 @@
                         <li>
                             <a href="{{ url('dashboard') }}">
                                 <i class="fas fa-store"
-                                   style="position: relative; top: 4px;"
+                                   style="position: relative; top: 3.5px;"
                                    title="Dashboard"></i>
                             </a>
                         </li>
                     @endif
+                    <li>
+                        <a href="#"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit()">
+                            <i class="fas fa-sign-out-alt"
+                               title="Logout"></i> Logout
+                        </a>
+                        <form id="logout-form"
+                              method="post"
+                              action="{{ url('logout') }}">
+                            @csrf
+                        </form>
+                    </li>
                 @endauth
                 @foreach($categories::all() as $category)
                     <li>
@@ -49,7 +63,7 @@
                            name="q"
                            class="search_input"
                            placeholder="Search Product..."
-                           value="{{ old('password') }}"
+                           value="{{ request()->get('q') }}"
                            required="required">
                     <button class="header_search_button">
                         <img src="{{ url('assets/app/images/search.png') }}"
@@ -102,8 +116,8 @@
                     </div>
                 </div>
                 <div>
-                    <a href="tel:+1 912-252-7350">
-                        +1 912-252-7350
+                    <a href="tel:{{ env('APP_CELLPHONE') }}">
+                        {{ env('APP_CELLPHONE') }}
                     </a>
                 </div>
             </div>

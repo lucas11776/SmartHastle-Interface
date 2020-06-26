@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'auth.guest' => \App\Http\Middleware\Guest::class,
         'auth.administrator' => \App\Http\Middleware\RedirectIfNotAdministrator::class,
         'auth.staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
+        'auth.cartNotEmpty' => \App\Http\Middleware\RedirectIfCartEmpty::class,
     ];
 
     /**

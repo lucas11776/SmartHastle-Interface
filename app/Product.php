@@ -91,7 +91,7 @@ class Product extends Model
     public static function price(HasMany $items): float
     {
         $total = $items->get()->sum(function($item) {
-            return (float) $item->product->price;
+            return (float) ($item->product->price);
         });
 
         return number_format($total, 2);

@@ -136,6 +136,18 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Get user cart total amount.
+     *
+     * @return float
+     */
+    public function cartTotal(): float
+    {
+        return $this->cart()->get()->sum(function(Cart $cart) {
+            return (float) $cart->cartable->price;
+        });
+    }
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

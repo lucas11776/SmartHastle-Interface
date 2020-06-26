@@ -1,9 +1,13 @@
 @inject('role', App\Role)
-<div class="input-group">
+<form class="input-group"
+      method="POST"
+      action="{{ url('user/' . $user->id . '/role') }}">
+    @csrf
     <select type="text"
-            class="form-control"
-            placeholder="Recipient's username"
-            aria-label="Recipient's username"
+            name="role"
+            class="form-control @error('role') is-invalid @enderror"
+            placeholder="Add user role."
+            aria-label="Add user role."
             aria-describedby="button-addon2">
         @foreach($role::orderBy('name', 'ASC')->get() as $role)
             <option value="{{ $role->name }}">
@@ -13,9 +17,15 @@
     </select>
     <div class="input-group-append">
         <button class="btn btn-success"
-                type="button"
+                type="submit"
                 id="button-addon2">
             <i class="fas fa-user-plus"></i>
         </button>
     </div>
-</div>
+    @error('role')
+    <span class="invalid-feedback"
+          role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+</form>

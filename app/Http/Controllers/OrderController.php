@@ -8,6 +8,7 @@ use App\Mail\OrderUserNotification;
 use App\Order;
 use App\Role;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
@@ -26,12 +27,30 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $orders = $user->orders()->orderBy('created_at', 'DESC')->paginate(12);
+        $orders = $user->orders()
+            ->orderBy('created_at', 'DESC')
+            ->paginate(12);
 
-        return view('user.orders', [
+        return view('user.order.orders', [
             'user' => $user,
             'orders' => $orders,
         ]);
+    }
+
+    /**
+     * Get single user order.
+     *
+     * @param Order $order
+     * @return Application|Factory|View
+     */
+    public function single(Order $order)
+    {
+        $order = auth()->user()
+            ->orders()
+            ->where('id', $order->id)
+            ->firstOrFail();
+
+        return view('user.order.single', ['order' => $order]);
     }
 
     /**
@@ -45,7 +64,8 @@ class OrderController extends Controller
 
         $this->orderNotification($order);
 
-        return redirect('my/orders');
+        return redirect('my/orders')
+            ->with('info', 'Your order was successfully you will receive a mail notification.');
     }
 
     /**
@@ -59,7 +79,9 @@ class OrderController extends Controller
     {
         $order->update($orderRequest->validated());
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('info', 'Order status has been updated to ' . $order->status . '.');
     }
 
     /**
@@ -74,19 +96,23 @@ class OrderController extends Controller
         $order->items()->delete();
         $order->delete();
 
-        return redirect('dashboard/orders');
+        return redirect('dashboard/orders')
+            ->with('success', 'Order has been deleted successfully.');;
     }
 
     /**
-     * Create new order user items in cart.
+     * Create new user order from cart and clear cart.
      *
      * @return Order
      */
     protected function createOrderFromCart(): Order
     {
-        $order = auth()->user()->orders()->create(['status' => 'waiting']);
+        $order = auth()->user()
+            ->orders()
+            ->create(['status' => 'waiting']);
 
-        $order->item()->createMany($this->cartToOrderItems());
+        $order->item()
+            ->createMany($this->cartToOrderItems());
 
         auth()->user()->cart()->delete();
 
@@ -114,7 +140,9 @@ class OrderController extends Controller
      */
     protected function cartToOrderItems(): array
     {
-        return auth()->user()->cart->map(function (Cart $cart) {
+        return auth()->user()
+            ->cart
+            ->map(function (Cart $cart) {
             return [
                 'orderizable_id' => $cart->cartable_id,
                 'orderizable_type' => $cart->cartable_type,

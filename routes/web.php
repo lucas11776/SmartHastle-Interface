@@ -40,9 +40,17 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth', 'auth.st
     });
     Route::prefix('users')->group(function () {
         Route::get('', 'UserController@Index');
+        Route::prefix('role')->group(function() {
+            Route::get('{role}', 'UserController@ByRole')
+                ->where('status', '(' . implode('|', Order::STATUS) . ')');
+        });
         Route::prefix('{user}')->group(function () {
             Route::get('', 'UserController@View');
-            Route::get('orders', 'UserController@orders');
+            Route::get('cart', 'UserController@Cart');
+            Route::prefix('orders')->group(function () {
+                Route::get('', 'UserController@Orders');
+                Route::get('{order}', 'UserController@SingleOrder');
+            });
             Route::get('favorites', 'UserController@Favorites');
         });
     });
@@ -52,9 +60,15 @@ Route::prefix('dashboard')->namespace('dashboard')->middleware(['auth', 'auth.st
             ->where('status', '(' . implode('|', Order::STATUS) . ')');
         Route::get('{order}', 'OrderController@View');
     });
+    Route::prefix('search')->group(function () {
+        Route::get('', 'SearchController@Index');
+    });
 });
 Route::prefix('my')->middleware(['auth'])->group(function () {
-    Route::get('orders', 'OrderController@Index');
+    Route::prefix('orders')->group(function () {
+        Route::get('', 'OrderController@Index');
+        Route::get('{order}', 'OrderController@Single');
+    });
     Route::get('favorites', 'UserController@Favorites');
     Route::prefix('account')->group(function () {
         Route::get('', 'UserController@Index');
@@ -86,7 +100,7 @@ Route::prefix('cart')->middleware(['auth'])->group(function () {
     Route::post('clear', 'CartController@Clear');
 });
 Route::prefix('order')->middleware(['auth'])->group(function () {
-    Route::post('', 'OrderController@Store');
+    Route::post('', 'OrderController@Store')->middleware('auth.cartNotEmpty');
     Route::prefix('{order}')->group(function () {
         Route::patch('', 'OrderController@Update');
         Route::delete('', 'OrderController@Destroy')->middleware(['auth.staff']);
@@ -98,6 +112,9 @@ Route::prefix('order')->middleware(['auth'])->group(function () {
     });
 });
 Route::prefix('checkout')->middleware(['auth'])->group(function () {
-    Route::get('', 'CheckoutController@Index');
+    Route::get('', 'CheckoutController@Index')->middleware('auth.cartNotEmpty');
+});
+Route::prefix('search')->group(function () {
+    Route::get('', 'SearchController@Index');
 });
 Route::get('{slug}', 'HomeController@Product');

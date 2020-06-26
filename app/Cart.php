@@ -58,7 +58,7 @@ class Cart extends Model
     /**
      * Get cart items.
      *
-     * @return MorphTo
+     * @return MorphToMany
      */
     public function cartables(): MorphToMany
     {

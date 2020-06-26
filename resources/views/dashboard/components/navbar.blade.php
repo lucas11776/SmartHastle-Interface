@@ -11,7 +11,7 @@
                    placeholder="Search for user account."
                    aria-label="Search"
                    aria-describedby="dashboard-search"
-                   value="{{ old('q') }}">
+                   value="{{ request()->get('q') }}">
             <div class="input-group-append">
                 <button class="btn btn-primary"
                         type="submit">

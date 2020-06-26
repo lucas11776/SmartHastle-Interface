@@ -360,7 +360,7 @@
                                             <a href="{{ url('my/orders/' . $order->id) }}">
                                                 {{ $order->user->first_name . ' ' . $order->user->last_name }}
                                             </a>
-                                            your order of R{{ \App\Product::price($order->items())  }} has been placed.
+                                            your order of R{{ number_format($order->total(), 2) }} has been placed.
                                         </h2>
 									</div>
 								</td>

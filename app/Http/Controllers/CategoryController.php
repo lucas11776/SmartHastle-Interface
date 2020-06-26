@@ -22,7 +22,8 @@ class CategoryController extends Controller
     {
         $this->create($request->validated());
 
-        return redirect('dashboard/categories');
+        return redirect('dashboard/categories')
+            ->with('Category has been created.');
     }
 
     /**
@@ -39,7 +40,8 @@ class CategoryController extends Controller
             'slug' => Str::slug($name)
         ]);
 
-        return redirect('dashboard/categories');
+        return redirect('dashboard/categories')
+            ->with('success', 'Category has updated successfully.');
     }
 
     /**
@@ -53,7 +55,8 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect('dashboard/categories');
+        return redirect('dashboard/categories')
+            ->with('success', 'Category has deleted successfully.');
     }
 
     /**

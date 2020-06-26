@@ -21,6 +21,12 @@
     <!-- Custom styles for this template-->
     <link href="{{ url('assets/dashboard/css/sb-admin-2.css') }}"
           rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ url('assets/app/styles/cart.css') }}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ url('assets/app/styles/cart_responsive.css') }}">
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ url('assets/dashboard/vendor/jquery/jquery.min.js') }}"></script>
@@ -47,6 +53,8 @@
     <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
+
+@include('components.notification.alert')
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">

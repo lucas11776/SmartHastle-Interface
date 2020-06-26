@@ -24,6 +24,8 @@ class OrderItemController extends Controller
 
         $orderItem->update($orderItemRequest->validated());
 
-        return redirect()->back()->with('message', "Order item {$orderItem->product->name} has been updated.");
+        return redirect()
+            ->back()
+            ->with('message', "Order item {$orderItem->product->name} has been updated.");
     }
 }

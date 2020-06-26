@@ -36,7 +36,9 @@
                         </div>
                     </div>
                     <div class="row cart_extra_row justify-content-center">
-                        @include('components.app.cart.list-summary', ['cart' => auth()->user()->cart])
+                        @if(auth()->user()->cart()->count() > 0)
+                            @include('components.app.cart.list-summary', ['cart' => auth()->user()->cart])
+                        @endif
                     </div>
                 </div>
             </div>

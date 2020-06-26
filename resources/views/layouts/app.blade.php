@@ -26,6 +26,10 @@
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart_responsive.css') }}">
             @break
+        @case('my/orders/{order}')
+            <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart_responsive.css') }}">
+            @break
         @case('checkout')
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/checkout.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/checkout_responsive.css') }}">
@@ -41,7 +45,11 @@
     <script src="{{ url('assets/app/styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
 </head>
 <body>
+
 @yield('content')
+
+@include('components.notification.alert')
+
 <script src="{{ url('assets/app/plugins/greensock/TweenMax.min.js') }}"></script>
 <script src="{{ url('assets/app/plugins/greensock/TimelineMax.min.js') }}"></script>
 <script src="{{ url('assets/app/plugins/scrollmagic/ScrollMagic.min.js') }}"></script>

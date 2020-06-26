@@ -27,10 +27,10 @@ class ProductController extends Controller
         $product = $this->create($productRequest->validated());
         $images = collect($imageRequest->validated()['image'])->sortKeysDesc();
 
-
         $this->uploadImages($product, $images->toArray());
 
-        return redirect('dashboard/products');
+        return redirect('dashboard/products/' . $product->id)
+            ->with('success', 'Product has been added to store.');
     }
 
     /**
@@ -44,7 +44,9 @@ class ProductController extends Controller
     {
         $product->update($request->validated());
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('info', 'Product has been updated successfully.');
     }
 
     /**
@@ -60,11 +62,15 @@ class ProductController extends Controller
         $product->images()->delete();
         $product->delete();
 
-        return redirect('dashboard/products');
+        return redirect('dashboard/products')
+            ->with('success', 'Product has been delete successfully.');
     }
 
     /**
-     * @inheritDoc
+     * Create new product in storage.
+     *
+     * @param array $data
+     * @return Product
      */
     public function create(array $data): Product
     {
