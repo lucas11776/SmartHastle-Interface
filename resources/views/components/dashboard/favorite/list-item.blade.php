@@ -7,27 +7,24 @@
         </div>
         <div>
             <div class="product_image">
-                <img src="{{ $item->cartable->image->url }}"
-                     alt="{{ $item->cartable->name }}"
+                <img src="{{ $item->favoriteable->image->url }}"
+                     alt="{{ $item->favoriteable->name }}"
                      style="width: 75px; height: 75px; border-radius: 100%;"
                      class="img-thumbnail border-primary">
             </div>
         </div>
         <div class="product_name_container">
             <div class="product_name">
-                <a href="{{ url($item->cartable->slug) }}">
-                    {{ Str::limit($item->cartable->name, 30) }}
+                <a href="product.html">
+                    {{ Str::limit($item->favoriteable->name, 30) }}
                 </a>
             </div>
             <div class="product_text">
-                {{ Str::limit($item->cartable->description, 75) }}
+                {{ Str::limit($item->favoriteable->description, 75) }}
             </div>
         </div>
     </div>
-    <div class="product_size product_text">
-        <span>Size: </span>{{ $item->size ?? '--' }}
-    </div>
-    <div class="product_price product_text">
-        <span>Price: </span>R{{ number_format($item->cartable->price, 2) }}
+    <div class="product_total product_text">
+        <span>Total: </span>R{{ $item->favoriteable->price }}
     </div>
 </li>

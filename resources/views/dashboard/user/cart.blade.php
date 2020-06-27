@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt-3 mb-3">
                             <div class="row">
                                 <div class="col">
                                     <div class="cart_container">
@@ -55,7 +55,7 @@
                                                             Cart-Total
                                                         </i>
                                                     </div>
-                                                    <div class="product_price product_text">
+                                                    <div class="product_total product_text">
                                                         <span></span>R{{ $user->cartTotal() }}
                                                     </div>
                                                 </li>

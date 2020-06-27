@@ -59,6 +59,14 @@
                                         </div>
                                     </div>
                                 </li>
+                                @error('role')
+                                <span class="list-group-item"
+                                      role="alert">
+                                    <strong class="text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                </span>
+                                @enderror
                             </ul>
                         </div>
                     </div>

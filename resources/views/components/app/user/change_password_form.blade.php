@@ -1,4 +1,4 @@
-<form action="{{ url('user') }}"
+<form action="{{ url('user/change/password') }}"
       method="POST">
     @csrf
     @method('PATCH')
@@ -10,9 +10,10 @@
         <div class="col-sm-8">
             <input id="old_password"
                    name="old_password"
-                   placeholder="Old password"
-                   class="form-control here"
-                   type="text">
+                   placeholder="Current password"
+                   class="form-control here @error('old_password') is-invalid @enderror"
+                   type="password"
+                   required>
         </div>
     </div>
     <div class="form-group row">
@@ -24,8 +25,9 @@
             <input id="password"
                    name="password"
                    placeholder="New password"
-                   class="form-control here"
-                   type="text">
+                   class="form-control here @error('password') is-invalid @enderror"
+                   type="password"
+                   required>
         </div>
     </div>
     <div class="form-group row">
@@ -37,9 +39,9 @@
             <input id="password_confirmation"
                    name="password_confirmation"
                    placeholder="Confirm password"
-                   class="form-control here"
-                   required="required"
-                   type="text">
+                   class="form-control here @error('password_confirmation') is-invalid @enderror"
+                   type="password"
+                   required>
         </div>
     </div>
     <div class="form-group row">

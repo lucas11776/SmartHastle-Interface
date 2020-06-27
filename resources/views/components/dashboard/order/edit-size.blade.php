@@ -1,10 +1,11 @@
 @inject('product', App\Product)
-<form action="{{ url('order/' . $order->id) }}"
+<form action="{{ url('order/' . $order->id . '/item/' . $item->id) }}"
       method="POST"
       class="input-group">
     @csrf
     @method('PATCH')
     <select type="text"
+            name="size"
             class="form-control"
             placeholder="Recipient's username"
             aria-label="Recipient's username"

@@ -72,12 +72,15 @@ Route::prefix('my')->middleware(['auth'])->group(function () {
     Route::get('favorites', 'UserController@Favorites');
     Route::prefix('account')->group(function () {
         Route::get('', 'UserController@Index');
-        Route::get('change/password', 'UserController@ChangePassword');
+        Route::get('change/password', 'UserController@ChangePasswordView');
     });
 });
 Route::prefix('user')->middleware(['auth'])->group(function() {
     Route::patch('', 'UserController@Update');
     Route::post('picture', 'UserController@UploadProfilePicture');
+    Route::prefix('password')->group(function() {
+        Route::post('change', 'UserController@ChangePassword');
+    });
     Route::prefix('{user}/role')->group(function () {
         Route::post('', 'UserController@AddRole');
         Route::delete('', 'UserController@RemoveRole');
@@ -106,7 +109,8 @@ Route::prefix('order')->middleware(['auth'])->group(function () {
         Route::delete('', 'OrderController@Destroy')->middleware(['auth.staff']);
         Route::prefix('item')->group(function () {
             Route::prefix('{orderItem}')->group(function () {
-                Route::patch('', 'OrderItemController@Update');
+                Route::patch('', 'OrderItemController@Update')->middleware('auth.staff');
+                Route::post('', 'OrderItemController@UserUpdate')->middleware(['auth.orderNotWaiting']);
             });
         });
     });

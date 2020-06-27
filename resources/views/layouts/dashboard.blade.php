@@ -11,7 +11,9 @@
           content="">
     <meta name="author"
           content="Themba Lucas Ngubeni">
-    <title>SB Admin 2 - Login</title>
+    <title>
+        {{ $title ?? env('APP_NAME') . ' Dashboard' }}
+    </title>
     <!-- Custom fonts for this template-->
     <link href="{{ url('assets/dashboard/vendor/fontawesome-free/css/all.min.css') }}"
           rel="stylesheet"

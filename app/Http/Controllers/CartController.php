@@ -43,7 +43,7 @@ class CartController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Item has been add to cart.');
+            ->with('success', 'Item has been added to cart.');
     }
 
     /**
@@ -93,7 +93,7 @@ class CartController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Item has been deleted in cart.');
+            ->with('success', 'Item has been deleted in your cart.');
     }
 
     /**

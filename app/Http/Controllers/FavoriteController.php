@@ -6,6 +6,7 @@ use App\Cart;
 use App\Favorite;
 use App\Http\Requests\FavoriteRequest;
 use Illuminate\Http\RedirectResponse;
+use Exception;
 
 class FavoriteController extends Controller
 {
@@ -19,10 +20,13 @@ class FavoriteController extends Controller
     {
         $data = $favoriteRequest->validated();
 
-        auth()->user()->favorites()->where($data)->firstOrCreate($data);
+        auth()->user()
+            ->favorites()
+            ->where($data)
+            ->firstOrCreate($data);
 
         return redirect()->back()
-            ->with('success', 'Item has been add to your favorites.');
+            ->with('success', 'Item has been added to your favorites.');
     }
 
     /**
@@ -30,12 +34,14 @@ class FavoriteController extends Controller
      *
      * @param Favorite $favorite
      * @return RedirectResponse
+     * @throws Exception
      */
     public function toCart(Favorite $favorite)
     {
-        auth()->user()->favorites()->where($favorite->only([
-            'favoriteable_id', 'favoriteable_type'
-        ]))->firstOrFail();
+        auth()->user()
+            ->favorites()
+            ->where($favorite->only(['favoriteable_id', 'favoriteable_type']))
+            ->firstOrFail();
 
         $this->moveFavoriteToCart($favorite);
         $favorite->delete();
@@ -52,7 +58,11 @@ class FavoriteController extends Controller
      */
     public function destroy(Favorite $favorite)
     {
-        auth()->user()->favorites()->where('id', $favorite->id)->firstOrFail()->delete();
+        auth()->user()
+            ->favorites()
+            ->where('id', $favorite->id)
+            ->firstOrFail()
+            ->delete();
 
         return redirect()->back()
             ->with('success', 'Item has been delete in favorites.');

@@ -28,4 +28,27 @@ class OrderItemController extends Controller
             ->back()
             ->with('message', "Order item {$orderItem->product->name} has been updated.");
     }
+
+    /**
+     * Update user order item.
+     *
+     * @param Order $order
+     * @param string $itemId
+     * @param OrderItemRequest $orderItemRequest
+     * @return RedirectResponse
+     */
+    public function userUpdate(Order $order, string $itemId, OrderItemRequest $orderItemRequest)
+    {
+        $user = auth()->user();
+        $order = $user->orders()
+            ->findOrFail($order->id);
+
+        $order->items()
+            ->findOrFail($itemId)
+            ->update($orderItemRequest->validated());
+
+        return redirect()
+            ->back()
+            ->with('success', 'Order item has been updated successfully.');
+    }
 }

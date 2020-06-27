@@ -20,11 +20,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-
+                                    <div class="col-md-12 mt-3 mb-4">
+                                        @include('components.app.favorite.list', ['favorites' => auth()->user()->favorites])
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

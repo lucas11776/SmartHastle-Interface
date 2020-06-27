@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'auth.administrator' => \App\Http\Middleware\RedirectIfNotAdministrator::class,
         'auth.staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
         'auth.cartNotEmpty' => \App\Http\Middleware\RedirectIfCartEmpty::class,
+        'auth.orderNotWaiting' => \App\Http\Middleware\RedirectIfOrderNotWaitingList::class,
     ];
 
     /**

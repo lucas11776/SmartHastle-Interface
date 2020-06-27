@@ -1,5 +1,10 @@
-<div class="input-group">
+<form class="input-group"
+      method="POST"
+      action="{{ url('user/' . $user->id . '/role') }}">
+    @csrf
+    @method('DELETE')
     <select type="text"
+            name="role"
             class="form-control"
             placeholder="Recipient's username"
             aria-label="Recipient's username"
@@ -12,9 +17,9 @@
     </select>
     <div class="input-group-append">
         <button class="btn btn-danger"
-                type="button"
+                type="submit"
                 id="button-addon2">
             <i class="fas fa-user-lock"></i>
         </button>
     </div>
-</div>
+</form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\RoleExistsRequest;
 use App\Http\Requests\RoleNotExistsRequest;
 use App\Http\Requests\RoleRequest;
@@ -9,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\ProfilePictureRequest;
 use App\Role;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -33,17 +35,35 @@ class UserController extends Controller
      */
     public function favorites()
     {
-        return view('user.favorites');
+        return view('user.favorites', ['user' => auth()->user()]);
     }
 
     /**
-     * Get change user password page.
+     * Get change user password view.
      *
      * @return Factory|View
      */
-    public function changePassword()
+    public function changePasswordView()
     {
         return view('user.change_password');
+    }
+
+    /**
+     * Change user password.
+     *
+     * @param ChangePasswordRequest $changePasswordRequest
+     * @return RedirectResponse
+     */
+    public function changePassword(ChangePasswordRequest $changePasswordRequest)
+    {
+        $newPassword = Hash::make($changePasswordRequest->get('password'));
+
+        auth()->user()
+            ->update(['password' => $newPassword]);
+
+        return redirect()
+            ->back()
+            ->with('info', 'Your password has been changed successfully.');
     }
 
     /**
@@ -85,9 +105,12 @@ class UserController extends Controller
     public function addRole(User $user, RoleNotExistsRequest $roleNotExistsRequest) {
         $role = Role::where('name', $roleNotExistsRequest->validated()['role'])->first();
 
-        $user->roles()->attach($role->id);
+        $user->roles()
+            ->attach($role->id);
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('success', 'Use role has been added successfully.');
     }
 
     /**
@@ -106,7 +129,9 @@ class UserController extends Controller
             ->first()
             ->pivot->delete();
 
-        return redirect()->back();
+        return redirect()
+            ->back()
+            ->with('success', 'User role has been removed successfully.');
     }
 
     /**

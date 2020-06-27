@@ -19,8 +19,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <hr/>
+                        <div class="col-md-12 mt-3 mb-3">
                             <div class="row pt-4 pb-3">
                                 <div class="col-md-6 pb-4">
                                     @include('components.dashboard.order.delete', ['order' => $order])

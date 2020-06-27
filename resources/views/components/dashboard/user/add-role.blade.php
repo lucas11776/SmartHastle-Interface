@@ -5,7 +5,7 @@
     @csrf
     <select type="text"
             name="role"
-            class="form-control @error('role') is-invalid @enderror"
+            class="form-control"
             placeholder="Add user role."
             aria-label="Add user role."
             aria-describedby="button-addon2">
@@ -22,10 +22,4 @@
             <i class="fas fa-user-plus"></i>
         </button>
     </div>
-    @error('role')
-    <span class="invalid-feedback"
-          role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-    @enderror
 </form>

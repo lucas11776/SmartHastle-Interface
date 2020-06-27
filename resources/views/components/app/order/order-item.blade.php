@@ -31,15 +31,37 @@
     <div class="product_price product_text">
         <span>Price: </span>R{{ number_format($item->product->price, 2) }}
     </div>
-    <div class="product_quantity_container">
-        <!-- Default dropleft button -->
-        <div class="btn-group dropdown">
-            <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-tshirt"></i>
-            </button>
-            <div class="dropdown-menu">
-
+    @if($order->status == 'waiting')
+        <div class="product_quantity_container">
+            <div class="btn-group dropleft">
+                <button type="button"
+                        class="btn btn-link dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    <i class="fas fa-tshirt"></i>
+                </button>
+                <div class="dropdown-menu p-0 m-0">
+                    <div class="btn-group">
+                        @foreach(\App\Product::$sizes as $size)
+                            @if($size != $item->size)
+                                <form action="{{ url('order/' . $order->id . '/item/' . $item->id) }}"
+                                      method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden"
+                                           name="size"
+                                           value="{{ $size }}">
+                                    <button class="btn btn-primary border-white"
+                                            type="submit">
+                                        {{ $size }}
+                                    </button>
+                                </form>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 </li>
