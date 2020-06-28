@@ -13,7 +13,7 @@
                                              alt="">
                                     </div>
                                     <div>
-                                        SmartHustle
+                                        {{ env('APP_NAME') }}
                                     </div>
                                 </div>
                             </a>

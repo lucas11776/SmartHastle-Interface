@@ -24,24 +24,12 @@
                     @if(auth()->user()->isStaff())
                         <li>
                             <a href="{{ url('dashboard') }}">
-                                <i class="fas fa-store"
-                                   style="position: relative; top: 3.5px;"
-                                   title="Dashboard"></i>
+                                <i class="fas fa-tachometer-alt"
+                                   title="Dashboard"></i> Dashboard
                             </a>
                         </li>
                     @endif
-                    <li>
-                        <a href="#"
-                           onclick="event.preventDefault();document.getElementById('logout-form').submit()">
-                            <i class="fas fa-sign-out-alt"
-                               title="Logout"></i> Logout
-                        </a>
-                        <form id="logout-form"
-                              method="post"
-                              action="{{ url('logout') }}">
-                            @csrf
-                        </form>
-                    </li>
+
                 @endauth
                 @foreach($categories::all() as $category)
                     <li>
@@ -50,6 +38,20 @@
                         </a>
                     </li>
                 @endforeach
+                    @auth()
+                        <li>
+                            <a href="#"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit()">
+                                <i class="fas fa-sign-out-alt"
+                                   title="Logout"></i> Logout
+                            </a>
+                            <form id="logout-form"
+                                  method="post"
+                                  action="{{ url('logout') }}">
+                                @csrf
+                            </form>
+                        </li>
+                    @endauth
             </ul>
         </nav>
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">

@@ -57,7 +57,7 @@
                 @if(auth()->user()->isStaff())
                     <li>
                         <a href="{{ url('dashboard') }}">
-                            <i class="fas fa-store"></i> Dashboard
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
                     </li>
                 @endif

@@ -1,7 +1,7 @@
-<form action="{{ url('user/change/password') }}"
+<form action="{{ url('user/password/change') }}"
       method="POST">
     @csrf
-    @method('PATCH')
+    @method('POST')
     <div class="form-group row">
         <label for="old_password"
                class="col-sm-4 col-form-label">

@@ -35,7 +35,15 @@ class UserController extends Controller
      */
     public function favorites()
     {
-        return view('user.favorites', ['user' => auth()->user()]);
+        $user = auth()->user();
+        $favorites = $user->favorites()
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('user.favorites', [
+            'user' => $user,
+            'favorites' => $favorites
+        ]);
     }
 
     /**

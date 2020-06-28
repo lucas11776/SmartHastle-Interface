@@ -16,12 +16,12 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        @include('components.app.user.profile_details', ['user' => auth()->user()])
+                                        @include('components.app.user.profile_details', ['user' => $user])
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mt-3 mb-4">
-                                        @include('components.app.favorite.list', ['favorites' => auth()->user()->favorites])
+                                        @include('components.app.favorite.list', ['favorites' => $favorites])
                                     </div>
                                 </div>
                             </div>

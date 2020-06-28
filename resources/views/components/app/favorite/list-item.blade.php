@@ -15,19 +15,45 @@
             </div>
         </div>
         <div class="product_name_container">
-            <div class="product_name"><a href="product.html">Cool Flufy Clothing without Stripes</a></div>
-            <div class="product_text">Second line for additional info</div>
+            <div class="product_name">
+                <a href="{{ url($item->favoriteable->slug) }}">
+                    {{ Str::limit($item->favoriteable->name, 30) }}
+                </a>
+            </div>
+            <div class="product_text">
+                {{ Str::limit($item->favoriteable->description, 50) }}
+            </div>
         </div>
     </div>
-    <div class="product_color product_text"><span>Color: </span>beige</div>
-    <div class="product_size product_text"><span>Size: </span>L</div>
-    <div class="product_price product_text"><span>Price: </span>$3.99</div>
-    <div class="product_quantity_container">
-        <div class="product_quantity ml-lg-auto mr-lg-auto text-center">
-            <span class="product_text product_num">1</span>
-            <div class="qty_sub qty_button trans_200 text-center"><span>-</span></div>
-            <div class="qty_add qty_button trans_200 text-center"><span>+</span></div>
+    <div class="product_quantity_container"
+         style="min-width: 80px;">
+        <div class="btn-group">
+            <form action="{{ url('favorite/' . $item->id) }}"
+                  method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="hidden"
+                       name="id">
+                <button class="btn btn-warning"
+                         type="submit">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </form>
+            <form action="{{ url('favorite/' . $item->id . '/to/cart') }}"
+                  method="POST"
+                  class="ml-1">
+                @csrf
+                @method('DELETE')
+                <input type="hidden"
+                       name="id">
+                <button class="btn btn-success"
+                        type="submit">
+                    <i class="fas fa-cart-plus"></i>
+                </button>
+            </form>
         </div>
     </div>
-    <div class="product_total product_text"><span>Total: </span>$3.99</div>
+    <div class="product_total product_text mr-2">
+        <span>Total: </span>R{{ number_format($item->favoriteable->price, 2) }}
+    </div>
 </li>

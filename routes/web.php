@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@Index');
 Route::get('products', 'HomeController@Products');
 Auth::routes();
+Route::prefix('categories')->group(function () {
+     Route::get('{slug}', 'HomeController@Category');
+});
 Route::prefix('category')->middleware(['auth', 'auth.administrator'])->group(function () {
     Route::post('', 'CategoryController@Store');
     Route::delete('{category}', 'CategoryController@Destroy');
@@ -103,7 +106,7 @@ Route::prefix('cart')->middleware(['auth'])->group(function () {
     Route::post('clear', 'CartController@Clear');
 });
 Route::prefix('order')->middleware(['auth'])->group(function () {
-    Route::post('', 'OrderController@Store')->middleware('auth.cartNotEmpty');
+    Route::post('', 'OrderController@Store')->middleware(['auth.cartNotEmpty', 'auth.noOrderWaiting']);
     Route::prefix('{order}')->group(function () {
         Route::patch('', 'OrderController@Update');
         Route::delete('', 'OrderController@Destroy')->middleware(['auth.staff']);

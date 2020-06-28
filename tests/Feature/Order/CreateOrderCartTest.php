@@ -3,6 +3,7 @@
 namespace Tests\Feature\Order;
 
 use App\Cart;
+use App\Order;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\TestResponse;
 
@@ -38,6 +39,19 @@ class CreateOrderCartTest extends TestCase
             auth()->user()->orders->first()->items()->count(),
             self::NumItemCart
         );
+    }
+
+    /**
+     * Should try to create order when user has order in waiting list.
+     */
+    public function testCreateOrderWithExistingWaitingOrder()
+    {
+        factory(Order::class)
+            ->create(['status' => 'waiting', 'user_id' => auth()->user()->id]);
+
+        $this->createOrder()
+            ->assertRedirect()
+            ->assertSessionHas('info');
     }
 
     /**

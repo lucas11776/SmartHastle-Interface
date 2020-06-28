@@ -28,20 +28,22 @@
             @break
         @case('my/orders/{order}')
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/main_styles.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart_responsive.css') }}">
             @break
         @case('my/favorites')
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/main_styles.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/cart_responsive.css') }}">
             @break
         @case('checkout')
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/checkout.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/checkout_responsive.css') }}">
             @break
+        @default
+            <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/main_styles.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/responsive.css') }}">
     @endswitch
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/main_styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/app/styles/responsive.css') }}">
-    <!-- Page Dep Pug-ins -->
     <script src="{{ url('assets/app/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ url('assets/app/styles/bootstrap-4.1.2/popper.js') }}"></script>
     <script src="{{ url('assets/app/styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>

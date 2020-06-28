@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'auth.staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
         'auth.cartNotEmpty' => \App\Http\Middleware\RedirectIfCartEmpty::class,
         'auth.orderNotWaiting' => \App\Http\Middleware\RedirectIfOrderNotWaitingList::class,
+        'auth.noOrderWaiting' => \App\Http\Middleware\RedirectIfOrderInWaiting::class,
     ];
 
     /**

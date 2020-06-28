@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -14,4 +15,14 @@ class Category extends Model
     protected  $fillable = [
         'name', 'slug'
     ];
+
+    /**
+     * Get all category products.
+     *
+     * @return HasMany
+     */
+    public function categorizables(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }
