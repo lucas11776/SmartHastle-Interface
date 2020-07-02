@@ -11,6 +11,8 @@
             Upload
         </a>
     </div>
-    @include('dashboard.components.products', ['product.products' => $products])
-    {{ $products->links() }}
+    @include('components.dashboard.product.products', ['product.products' => $products])
+    <div class="mb-4">
+        {{ $products->links() }}
+    </div>
 @endsection

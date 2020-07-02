@@ -51,22 +51,22 @@
                             </div>
                             <ul class="footer_social_list d-flex flex-row align-items-start justify-content-start">
                                 <li>
-                                    <a href="#">
+                                    <a href="https://facebook.com/">
                                         <i class="fa fa-facebook" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://youtube.com/">
                                         <i class="fa fa-youtube-play" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="mailto:{{ env('MAIL_FROM_ADDRESS') }}">
                                         <i class="fa fa-google-plus" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://instagram.com/">
                                         <i class="fa fa-instagram" aria-hidden="true"></i>
                                     </a>
                                 </li>

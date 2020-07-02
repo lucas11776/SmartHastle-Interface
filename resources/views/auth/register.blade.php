@@ -7,7 +7,7 @@
                     <div class="p-2 pt-4 pb-4">
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">
-                                Join SmartHassle <i class="fas fa-users"></i> Club..
+                                Join {{ env('APP_NAME') }} <i class="fas fa-users"></i> Club...
                             </h1>
                         </div>
                         <form class="user"

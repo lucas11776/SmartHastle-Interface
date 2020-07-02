@@ -7,5 +7,5 @@
         </h1>
     </div>
     <!-- Application Summary Details -->
-    @include('dashboard.components.summary')
+    @include('components.dashboard.summary')
 @endsection

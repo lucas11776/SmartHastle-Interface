@@ -12,11 +12,19 @@
 */
 
 use App\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Auth::routes([
+    'verify' => true,
+    'reset' => true,
+    'confirm' => true,
+]);
+Route::get('test', function () {
+    return view('auth.verify');
+});
 Route::get('/', 'HomeController@Index');
 Route::get('products', 'HomeController@Products');
-Auth::routes();
 Route::prefix('categories')->group(function () {
      Route::get('{slug}', 'HomeController@Category');
 });
@@ -91,6 +99,7 @@ Route::prefix('user')->middleware(['auth'])->group(function() {
 });
 Route::prefix('favorite')->middleware(['auth'])->group(function () {
     Route::post('', 'FavoriteController@Create');
+    Route::delete('clear', 'FavoriteController@Clear');
     Route::prefix('{favorite}')->group(function() {
         Route::delete('', 'FavoriteController@Destroy');
         Route::prefix('to')->group(function() {
@@ -123,5 +132,8 @@ Route::prefix('checkout')->middleware(['auth'])->group(function () {
 });
 Route::prefix('search')->group(function () {
     Route::get('', 'SearchController@Index');
+});
+Route::prefix('verification')->namespace('auth')->group(function () {
+    Route::post('email/resend', 'VerificationController@Resend')->name('verification.resend');
 });
 Route::get('{slug}', 'HomeController@Product');

@@ -12,23 +12,31 @@
     </div>
     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
         <div class="text-center text-sm-left mb-2 mb-sm-0">
-            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+            <h4 class="pt-sm-3 pb-1 mb-0 text-nowrap">
                 {{ $user->first_name . ' ' . $user->last_name }}
             </h4>
             <p class="mb-0">
                 <a href="mailto:{{ $user->email }}"
-                   class="btn-link">
+                   class="@if($user->hasVerifiedEmail()) text-success @endif"
+                   @if($user->hasVerifiedEmail())
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title="Email As Been Verified."
+                    @endif>
+                    @if($user->hasVerifiedEmail())
+                        <i class="fas fa-check-circle"></i>
+                    @endif
                     {{ $user->email }}
                 </a>
             </p>
-            <div class="text-muted font-weight-bolder pt-1 pb-1">
+            <div class="text-muted font-weight-bolder pb-1">
                 @if($user->cellphone_number)
-                    <span class="h6">
+                    <p class="h6 mt-2">
                         <a href="tel:{{ $user->cellphone_number }}"
                            class="btn-link">
                             <i class="fas fa-phone-alt"></i> {{ $user->cellphone_number }}
                         </a>
-                    </span>
+                    </p>
                 @endif
             </div>
             @auth()

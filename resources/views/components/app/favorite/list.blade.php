@@ -5,7 +5,7 @@
                 <ul class="cart_bar_list item_list d-flex flex-row align-items-center justify-content-end">
                     <li class="mr-auto">Favorites</li>
                     <li>Action</li>
-                    <li>Total</li>
+                    <li>Price</li>
                 </ul>
             </div>
             <div class="cart_items">

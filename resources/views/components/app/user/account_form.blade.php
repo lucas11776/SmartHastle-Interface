@@ -1,5 +1,6 @@
 <form action="{{ url('user') }}"
-      method="POST">
+      method="POST"
+      name="update_account">
     @csrf
     @method('PATCH')
     <div class="form-group row">
@@ -48,23 +49,56 @@
             Email <span class="text-danger">*</span>
         </label>
         <div class="col-sm-8">
-            <input type="hidden"
-                   name="email"
-                   value="{{ $user->email }}">
-            <input id="email"
-                   name="email"
-                   placeholder="Email address"
-                   class="form-control @error('email') is-invalid @enderror"
-                   required="required"
-                   type="text"
-                   value="{{ $user->email }}"
-                   disabled>
+            <div class="input-group"
+                  name="verify_account">
+                <input type="hidden"
+                       name="email"
+                       value="{{ old('email') ?? $user->email }}">
+                <input id="email"
+                       name="email"
+                       placeholder="Email address"
+                       class="form-control @error('email') is-invalid  @enderror"
+                       required="required d-none"
+                       type="text"
+                       value="{{ $user->email }}"
+                       disabled>
+                @if(! auth()->user()->hasVerifiedEmail())
+                    <div class="input-group-append">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info"
+                                    type="button"
+                                    id="btn-verify-email"
+                                    title="Verify email address."
+                                    onclick="event.preventDefault(); document.getElementById('email_verification_form').submit();">
+                                <span class="fas fa-link"></span> Send Link.
+                            </button>
+                        </div>
+                    </div>
+                @endif
+            </div>
+            @if(! auth()->user()->hasVerifiedEmail())
+                <p class="text-info small mt-1">
+                    <i class="fas fa-info-circle"></i> Please verify your email by clicking the Send Link button to get verification link.
+                </p>
+            @endif
             @error('email')
             <span class="invalid-feedback"
                   role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
+        </div>
+    </div>
+    <div class="form-group row d-none">
+        <label for="email"
+               class="col-sm-4 col-form-label">
+            <i class="fas fa-envelope text-primary"></i> Verify email.
+        </label>
+        <div class="col-sm-8">
+            <button type="button"
+                    class="btn btn-outline-primary btn-user">
+                <i class="fas fa-paper-plane"></i> {{ __('Send link...') }}
+            </button>
         </div>
     </div>
     <div class="form-group row">
@@ -78,7 +112,7 @@
                    placeholder="Cellphone number"
                    class="form-control @error('cellphone_number') is-invalid @enderror"
                    type="text"
-                   value="{{ $user->cellphone_number }}">
+                   value="{{ old('cellphone_number') ?? $user->cellphone_number }}">
             @error('cellphone_number')
             <span class="invalid-feedback"
                   role="alert">
@@ -96,4 +130,11 @@
             </button>
         </div>
     </div>
+</form>
+<form class="d-inline"
+      method="POST"
+      action="{{ route('verification.resend') }}"
+      id="email_verification_form"
+      name="email_verification">
+    @csrf
 </form>

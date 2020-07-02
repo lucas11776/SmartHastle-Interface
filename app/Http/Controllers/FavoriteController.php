@@ -30,6 +30,22 @@ class FavoriteController extends Controller
     }
 
     /**
+     * Clear user favorites items.
+     *
+     * @return RedirectResponse
+     */
+    public function clear()
+    {
+        auth()->user()
+            ->favorites()
+            ->delete();
+
+        return redirect()
+            ->back()
+            ->with('info', 'Your favorites list has been cleared.');
+    }
+
+    /**
      * Move item to cart
      *
      * @param Favorite $favorite

@@ -44,13 +44,13 @@
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
-            @include('dashboard.components.navbar')
+            @include('components.dashboard.navbar')
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 @yield('content')
             </div>
         </div>
-        @include('dashboard.components.footer')
+        @include('components.dashboard.footer')
     </div>
     <!-- End of Content Wrapper -->
 </div>

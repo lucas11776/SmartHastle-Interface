@@ -27,7 +27,8 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $orders = $user->orders()
+        $orders = $user
+            ->orders()
             ->orderBy('created_at', 'DESC')
             ->paginate(12);
 
@@ -54,7 +55,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Create new user order in the storage.
+     * Create new user order in storage.
      *
      * @return RedirectResponse|Redirector
      */

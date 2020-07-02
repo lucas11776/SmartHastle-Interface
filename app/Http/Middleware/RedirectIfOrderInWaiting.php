@@ -24,7 +24,7 @@ class RedirectIfOrderInWaiting
         if($hasOrderInWaitingList) {
             return redirect()
                 ->back()
-                ->with('info', 'You can not create new order when the is a order in waiting list.');
+                ->with('info', 'Failed to place order because the is an order in the waiting list.');
         }
 
         return $next($request);

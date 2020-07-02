@@ -15,8 +15,15 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        $user =  auth()->user();
+        $orderWaiting = auth()->user()
+            ->orders()
+            ->where('status', 'waiting')
+            ->count() > 0;
+
         return view('checkout.summary', [
-            'user' => auth()->user(),
+            'user' => $user,
+            'orderWaiting' => $orderWaiting
         ]);
     }
 }

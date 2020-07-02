@@ -62,11 +62,19 @@
                                           method="POST">
                                         @csrf
                                     </form>
-                                    <div class="checkout_button trans_200"
-                                         onclick="event.preventDefault();document.getElementById('create-order-form').submit()"
-                                         style="cursor: pointer;">
-                                        <a>place order</a>
-                                    </div>
+                                    @if($orderWaiting == false)
+                                        <div class="checkout_button trans_200"
+                                             onclick="event.preventDefault();document.getElementById('create-order-form').submit()"
+                                             style="cursor: pointer;">
+                                            <a>place order</a>
+                                        </div>
+                                    @else
+                                        <button class="btn btn-outline-info btn-block mt-4"
+                                                title="Please contact us if you have a question by clicking phone on top."
+                                                disabled="true">
+                                            <i class="fas fa-info-circle"></i> Place order blocked pending order in waiting list.
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>

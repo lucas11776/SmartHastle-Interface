@@ -14,6 +14,12 @@
                    class="form-control here @error('old_password') is-invalid @enderror"
                    type="password"
                    required>
+            @error('old_password')
+            <span class="invalid-feedback"
+                  role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
     </div>
     <div class="form-group row">
@@ -28,6 +34,12 @@
                    class="form-control here @error('password') is-invalid @enderror"
                    type="password"
                    required>
+            @error('password')
+            <span class="invalid-feedback"
+                  role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
     </div>
     <div class="form-group row">

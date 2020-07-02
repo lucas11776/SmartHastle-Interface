@@ -121,7 +121,7 @@
 	<!-- Progressive Enhancements : BEGIN -->
 	<style>
 		.primary {
-			background: #17bebb;
+			background: black;
 		}
 
 		.bg_white {
@@ -152,7 +152,7 @@
 
 		.btn.btn-primary {
 			border-radius: 5px;
-			background: #17bebb;
+			background: black;
 			color: #ffffff;
 		}
 
@@ -203,7 +203,7 @@
 		}
 
 		a {
-			color: #17bebb;
+			color: black;
 		}
 
 		table {}
@@ -215,7 +215,7 @@
 		}
 
 		.logo h1 a {
-			color: #17bebb;
+			color: black;
 			font-size: 24px;
 			font-weight: 700;
 			font-family: 'Poppins', sans-serif;
@@ -309,8 +309,7 @@
 
 <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
 	<center style="width: 100%; background-color: #f1f1f1;">
-		<div>
-			style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+		<div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
 			&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
 		</div>
 		<div style="max-width: 600px; margin: 0 auto;" class="email-container">
@@ -370,7 +369,7 @@
                                             </a>
                                         </p>
 										<p>
-                                            Total Price: {{ number_format($order->total(), 2) }}<br/>
+                                            Total Price: R{{ number_format($order->total(), 2) }}<br/>
                                             Items: {{ $order->items()->count() }}
                                         </p>
 									</div>

@@ -79,18 +79,20 @@
                         <div>
                             <img src="{{ url('assets/app/images/user.svg') }}"
                                  alt="https://www.flaticon.com/authors/freepik"
-                                 title="User account">
+                                 title="My Account">
                         </div>
                     </a>
                 </div>
                 <div class="cart user">
-                    <a href="{{ url('cart') }}">
+                    <a href="{{ url('cart') }}"
+                       title="My Cart">
                         <div>
                             <img class="svg"
                                  src="{{ url('assets/app/images/cart.svg') }}"
-                                 alt="https://www.flaticon.com/authors/freepik"
-                                 title="Items in cart">
-                            <div>{{ auth()->user()->cart()->count() }}</div>
+                                 alt="https://www.flaticon.com/authors/freepik">
+                            <div>
+                                {{ auth()->user()->cart()->count() }}
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -113,7 +115,7 @@
                         <a href="tel:+1 912-252-7350">
                             <img src="{{ url('assets/app/images/phone.svg') }}"
                                  alt="https://www.flaticon.com/authors/freepik"
-                                 title="Call">
+                                 title="Call Us Now">
                         </a>
                     </div>
                 </div>

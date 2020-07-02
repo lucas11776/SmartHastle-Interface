@@ -40,7 +40,7 @@
             </div>
             <div class="button button_continue trans_200">
                 <a href="{{ url('products') }}">
-                    Continue
+                    <i class="fas fa-shopping-bag"></i> Shopping
                 </a>
             </div>
         </div>

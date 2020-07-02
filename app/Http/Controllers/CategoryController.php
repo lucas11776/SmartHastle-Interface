@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $this->create($request->validated());
 
         return redirect('dashboard/categories')
-            ->with('Category has been created.');
+            ->with('success', 'Category has been created.');
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect('dashboard/categories')
-            ->with('success', 'Category has deleted successfully.');
+            ->with('success', 'Category has been deleted successfully.');
     }
 
     /**
