@@ -146,8 +146,6 @@ p a:hover::after {
     color: #FFFFFF;
 }
 
-p::selection {}
-
 h1 {
     font-size: 48px;
 }
@@ -180,13 +178,6 @@ h6 {
     text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
     line-height: 1.2;
 }
-
-h1::selection,
-h2::selection,
-h3::selection,
-h4::selection,
-h5::selection,
-h6::selection {}
 
 img {
     max-width: 100%;
@@ -1288,8 +1279,6 @@ section {
     padding-bottom: 37px;
 }
 
-.footer_about {}
-
 .footer_logo {
     margin-left: -71px;
 }
@@ -1406,10 +1395,6 @@ section {
     background: #beaf4a;
 }
 
-.footer_contact {
-    /*padding-top: 64px;*/
-}
-
 .newsletter {
     margin-top: 48px;
 }
@@ -1476,8 +1461,6 @@ section {
     text-align: center;
     cursor: pointer;
 }
-
-.footer_social {}
 
 .footer_social_list {
     margin-top: 41px;
