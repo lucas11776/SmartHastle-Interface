@@ -3,112 +3,105 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Repositories\UserRepository;
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\ItemInCartRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CartController extends Controller
 {
     /**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * CartController constructor.
+     *
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    /**
      * Get user cart page.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $carts = auth()->user()
-            ->cart()
-            ->orderBy('id', 'DESC')
-            ->paginate(15);
+        $cart = $this->userRepository->cart($request->user())->paginate(12);
 
-        return view('cart.items', ['items' => $carts]);
+        return view('cart.items', ['items' => $cart]);
     }
 
     /**
      * Store new item in cart.
      *
+     * @param Request $request
      * @param CartRequest $cartRequest
      * @return RedirectResponse
      */
-    public function store(CartRequest $cartRequest)
+    public function store(Request $request, CartRequest $cartRequest)
     {
-        $data = array_merge(
-            $cartRequest->validated(),
-            ['user_id' => auth()->user()->id]
-        );
+        $model = $cartRequest->get('cartable_type')::findOrFail($cartRequest->get('cartable_id'));
 
-        $this->create($data);
+        $this->userRepository->addToCart($request->user(), $model, $cartRequest->get('size'));
 
-        return redirect()
-            ->back()
-            ->with('success', 'Item has been added to cart.');
+        return redirect()->back()->with('success', 'Item has been added to cart.');
     }
 
     /**
      * Update item in cart.
      *
+     * @param Request $request
      * @param ItemInCartRequest $inCartRequest
      * @param CartRequest $cartRequest
      * @return RedirectResponse
      */
-    public function update(ItemInCartRequest $inCartRequest, CartRequest $cartRequest)
+    public function update(Request $request, ItemInCartRequest $inCartRequest, CartRequest $cartRequest)
     {
-        auth()->user()
-            ->cart()
-            ->where('id', $inCartRequest->validated()['id'])
-            ->update($cartRequest->validated());
+        $user = $request->user();
+        $cart = Cart::query()->findOrFail($inCartRequest->get('id'));
 
-        return redirect()
-            ->back()
-            ->with('success', 'Item has been updated in cart.');
+        $this->userRepository->updateCart($user, $cart, $cartRequest->get('size'));
+
+        return redirect()->back()->with('success', 'Item has been updated in cart.');
     }
 
     /**
      * Clear user cart and redirect.
      *
+     * @param Request $request
      * @return RedirectResponse
      */
-    public function clear()
+    public function clear(Request $request)
     {
-        auth()->user()->cart()->delete();
+        $this->userRepository->clearCart($request->user());
 
-        return redirect()
-            ->back()
-            ->with('info', 'Cart has been clear successfully.');
+        return redirect()->back()->with('info', 'Cart has been clear successfully.');
     }
 
     /**
      * Delete item in cart.
      *
+     * @param Request $request
      * @param ItemInCartRequest $inCartRequest
      * @return RedirectResponse
      */
-    public function destroy(ItemInCartRequest $inCartRequest)
+    public function destroy(Request $request, ItemInCartRequest $inCartRequest)
     {
-        $data = $inCartRequest->validated();
+        $user = $request->user();
+        $cart = Cart::query()->findOrFail($inCartRequest->get('id'));
 
-        auth()->user()->cart()->where('id', $data['id'])->delete();
+        $this->userRepository->removeCart($user, $cart);
 
-        return redirect()
-            ->back()
-            ->with('success', 'Item has been deleted in your cart.');
-    }
-
-    /**
-     * Create new cart item in storage.
-     *
-     * @param array $data
-     * @return Cart
-     */
-    public function create(array $data): Cart
-    {
-        return Cart::create([
-            'user_id' => $data['user_id'],
-            'cartable_id' => $data['cartable_id'],
-            'cartable_type' => $data['cartable_type'],
-            'size' => $data['size'] ?? null
-        ]);
+        return redirect()->back()->with('success', 'Item has been deleted in your cart.');
     }
 }

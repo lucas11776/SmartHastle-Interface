@@ -31,9 +31,9 @@ class CreateProductTest extends TestCase
         $this->createProduct($data)
             ->assertRedirect();
 
-        foreach ($data['image'] as $image) {
+        foreach ($data['image'] as $image)
             Storage::disk('public')->assertExists($image->hashName());
-        }
+
     }
 
     /**
@@ -44,12 +44,7 @@ class CreateProductTest extends TestCase
         $this->createProduct([])
             ->assertJsonStructure([
                 'message',
-                'errors' => [
-                    'category_id',
-                    'name',
-                    'price',
-                    'description'
-                ]
+                'errors' => ['category_id', 'name', 'price', 'description']
             ]);
     }
 
@@ -65,9 +60,7 @@ class CreateProductTest extends TestCase
         $this->createProduct($data)
             ->assertJsonStructure([
                 'message',
-                'errors' => [
-                    'category_id'
-                ]
+                'errors' => ['category_id']
             ]);
     }
 
@@ -83,9 +76,7 @@ class CreateProductTest extends TestCase
         $this->createProduct($data)
             ->assertJsonStructure([
                 'message',
-                'errors' => [
-                    'name'
-                ]
+                'errors' => ['name']
             ]);
     }
 

@@ -8,9 +8,12 @@ use App\Http\Requests\RoleNotExistsRequest;
 use App\Http\Requests\RoleRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\ProfilePictureRequest;
+use App\Repositories\UserRepository;
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -19,31 +22,43 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
-     * Get user account settings page.
-     *
-     * @return Factory|View
+     * @var UserRepository
      */
-    public function index()
+    private $userRepository;
+
+    /**
+     * UserController constructor.
+     *
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
     {
-        return view('user.account', ['user' => auth()->user()]);
+        $this->userRepository = $userRepository;
     }
 
     /**
-     * Get user favorite items.
+     * Get user account settings page.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function favorites()
+    public function index(Request $request)
     {
-        $user = auth()->user();
-        $favorites = $user->favorites()
-            ->orderBy('id', 'DESC')
-            ->get();
+        return view('user.account', ['user' => $request->user()]);
+    }
 
-        return view('user.favorites', [
-            'user' => $user,
-            'favorites' => $favorites
-        ]);
+    /**
+     * Get user favorite products.
+     *
+     * @param Request $request
+     * @return Factory|View
+     */
+    public function favorites(Request $request)
+    {
+        $user = $request->user();
+        $userFavorites = $this->userRepository->favorites($user)->paginate(12);
+
+        return view('user.favorites', ['user' => $user, 'favorites' => $userFavorites]);
     }
 
     /**
@@ -59,48 +74,47 @@ class UserController extends Controller
     /**
      * Change user password.
      *
+     * @param Request $request
      * @param ChangePasswordRequest $changePasswordRequest
      * @return RedirectResponse
      */
-    public function changePassword(ChangePasswordRequest $changePasswordRequest)
+    public function changePassword(Request $request, ChangePasswordRequest $changePasswordRequest)
     {
-        $newPassword = Hash::make($changePasswordRequest->get('password'));
+        $user = $request->user();
+        $password = $changePasswordRequest->get('password');
 
-        auth()->user()
-            ->update(['password' => $newPassword]);
+        $this->userRepository->changePassword($user, $password);
 
-        return redirect()
-            ->back()
-            ->with('info', 'Your password has been changed successfully.');
+        return redirect()->back()->with('info', 'Your password has been changed successfully.');
     }
 
     /**
      * Update user account details.
      *
+     * @param Request $request
      * @param UserRequest $userRequest
      * @return RedirectResponse
      */
-    public function update(UserRequest $userRequest)
+    public function update(Request $request, UserRequest $userRequest)
     {
-        $this->updateUserAccount($userRequest->validated());
+        $this->userRepository->update($request->user(), $userRequest->validated());
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Personal details updated successfully.');
     }
 
     /**
      * Upload new user profile picture.
      *
+     * @param Request $request
      * @param ProfilePictureRequest $profilePictureRequest
+     *
      * @return RedirectResponse
      */
-    public function uploadProfilePicture(ProfilePictureRequest $profilePictureRequest)
+    public function uploadProfilePicture(Request $request, ProfilePictureRequest $profilePictureRequest)
     {
-        $image = $profilePictureRequest->validated()['image'];
-        $path = Storage::put('public', $image);
+        $this->userRepository->changeProfilePicture($request->user(), $profilePictureRequest->file('image'));
 
-        $this->changeProfilePicture($path);
-
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Profile picture has been change successfully');
     }
 
     /**
@@ -110,15 +124,11 @@ class UserController extends Controller
      * @param RoleNotExistsRequest $roleNotExistsRequest
      * @return RedirectResponse
      */
-    public function addRole(User $user, RoleNotExistsRequest $roleNotExistsRequest) {
-        $role = Role::where('name', $roleNotExistsRequest->validated()['role'])->first();
+    public function addRole(User $user, RoleNotExistsRequest $roleNotExistsRequest)
+    {
+        $this->userRepository->addRole($user, $roleNotExistsRequest->get('role'));
 
-        $user->roles()
-            ->attach($role->id);
-
-        return redirect()
-            ->back()
-            ->with('success', 'Use role has been added successfully.');
+        return redirect()->back()->with('success', 'Use role has been added successfully.');
     }
 
     /**
@@ -130,46 +140,8 @@ class UserController extends Controller
      */
     public function removeRole(User $user, RoleExistsRequest $roleExistsRequest)
     {
-        $role = $roleExistsRequest->validated()['role'];
+        $this->userRepository->removeRole($user, $roleExistsRequest->get('role'));
 
-        $user->roles()
-            ->where('name', $role)
-            ->first()
-            ->pivot->delete();
-
-        return redirect()
-            ->back()
-            ->with('success', 'User role has been removed successfully.');
-    }
-
-    /**
-     * Change user profile picture.
-     *
-     * @param string $path
-     * @return bool
-     */
-    protected function changeProfilePicture(string $path): bool
-    {
-        $user = auth()->user();
-
-        Storage::delete($user->image->path);
-
-        return $user->image()->update([
-            'path' =>  $path,
-            'url' => url(Storage::url($path))
-        ]);
-    }
-
-    /**
-     * @param array $data
-     * @return mixed
-     */
-    protected function updateUserAccount(array $data): bool
-    {
-        return auth()->user()->update([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'cellphone_number' => $data['cellphone_number'] ?? null,
-        ]);
+        return redirect()->back()->with('success', 'User role has been removed successfully.');
     }
 }

@@ -2,16 +2,38 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Order;
-use App\Role;
 use App\User;
-use Illuminate\Contracts\Foundation\Application;
+use App\Repositories\UserRepository;
+use App\Http\Controllers\Controller;
+use App\Repositories\UsersRepository;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    /**
+     * @var UsersRepository
+     */
+    protected $usersRepository;
+
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * UserController constructor.
+     *
+     * @param UsersRepository $usersRepository
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UsersRepository $usersRepository, UserRepository $userRepository)
+    {
+        $this->usersRepository = $usersRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Get all user account in storage.
      *
@@ -19,9 +41,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::query()
-            ->orderBy('create_at', 'DESC')
-            ->paginate(20);
+        $users = $this->usersRepository->get()->paginate(20);
 
         return view('dashboard.user.users', ['users' => $users]);
     }
@@ -34,11 +54,7 @@ class UserController extends Controller
      */
     public function byRole(string $role)
     {
-        $users = Role::query()
-            ->where('name', $role)
-            ->firstOrFail()
-            ->users()
-            ->paginate(20);
+        $users = $this->usersRepository->getByRole($role)->paginate(20);
 
         return view('dashboard.user.users', ['users' => $users]);
     }
@@ -62,14 +78,9 @@ class UserController extends Controller
      */
     public function orders(User $user)
     {
-        $orders = $user->orders()
-            ->orderBy('created_at', 'DESC')
-            ->paginate();
+        $orders = $this->userRepository->orders($user)->paginate(12);
 
-        return view('dashboard.user.orders', [
-            'orders' => $orders,
-            'user' => $user
-        ]);
+        return view('dashboard.user.orders', ['user' => $user, 'orders' => $orders]);
     }
 
     /**
@@ -105,12 +116,8 @@ class UserController extends Controller
      */
     public function favorites(User $user)
     {
-        $favorites = $user->favorites()
-            ->paginate(12);
+        $favorites = $this->userRepository->favorites($user)->paginate(12);
 
-        return view('dashboard.user.favorites', [
-            'favorites' => $favorites,
-            'user' => $user,
-        ]);
+        return view('dashboard.user.favorites', ['user' => $user, 'favorites' => $favorites]);
     }
 }

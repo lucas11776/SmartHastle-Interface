@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Artisan;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseMigrations, Mocks;
+    use CreatesApplication,
+        DatabaseMigrations,
+        Mocks;
 
     /**
      * Setup the test environment.
@@ -31,8 +33,7 @@ abstract class TestCase extends BaseTestCase
      */
     private function applicationRoles()
     {
-        foreach (Role::ROLES as $role) {
+        foreach (Role::ROLES as $role)
             Role::create(['name' => $role]);
-        }
     }
 }

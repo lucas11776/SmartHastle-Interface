@@ -24,9 +24,7 @@ class OrderItemController extends Controller
 
         $orderItem->update($orderItemRequest->validated());
 
-        return redirect()
-            ->back()
-            ->with('message', "Order item {$orderItem->product->name} has been updated.");
+        return redirect()->back()->with('message', "Order item {$orderItem->product->name} has been updated.");
     }
 
     /**
@@ -40,15 +38,10 @@ class OrderItemController extends Controller
     public function userUpdate(Order $order, string $itemId, OrderItemRequest $orderItemRequest)
     {
         $user = auth()->user();
-        $order = $user->orders()
-            ->findOrFail($order->id);
+        $order = $user->orders()->findOrFail($order->id);
 
-        $order->items()
-            ->findOrFail($itemId)
-            ->update($orderItemRequest->validated());
+        $order->items()->findOrFail($itemId)->update($orderItemRequest->validated());
 
-        return redirect()
-            ->back()
-            ->with('success', 'Order item has been updated successfully.');
+        return redirect()->back()->with('success', 'Order item has been updated successfully.');
     }
 }

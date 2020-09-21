@@ -20,13 +20,9 @@ class FavoriteController extends Controller
     {
         $data = $favoriteRequest->validated();
 
-        auth()->user()
-            ->favorites()
-            ->where($data)
-            ->firstOrCreate($data);
+        auth()->user()->favorites()->where($data)->firstOrCreate($data);
 
-        return redirect()->back()
-            ->with('success', 'Item has been added to your favorites.');
+        return redirect()->back()->with('success', 'Item has been added to your favorites.');
     }
 
     /**
@@ -36,13 +32,9 @@ class FavoriteController extends Controller
      */
     public function clear()
     {
-        auth()->user()
-            ->favorites()
-            ->delete();
+        auth()->user()->favorites()->delete();
 
-        return redirect()
-            ->back()
-            ->with('info', 'Your favorites list has been cleared.');
+        return redirect()->back()->with('info', 'Your favorites list has been cleared.');
     }
 
     /**
@@ -54,16 +46,12 @@ class FavoriteController extends Controller
      */
     public function toCart(Favorite $favorite)
     {
-        auth()->user()
-            ->favorites()
-            ->where($favorite->only(['favoriteable_id', 'favoriteable_type']))
-            ->firstOrFail();
+        auth()->user()->favorites()->where($favorite->only(['favoriteable_id', 'favoriteable_type']))->firstOrFail();
 
         $this->moveFavoriteToCart($favorite);
         $favorite->delete();
 
-        return redirect()->back()
-            ->with('message', 'Favorite has been moved to cart.');
+        return redirect()->back()->with('message', 'Favorite has been moved to cart.');
     }
 
     /**

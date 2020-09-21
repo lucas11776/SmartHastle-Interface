@@ -51,9 +51,7 @@ class AddUserRoleTest extends TestCase
         $this->addRole(auth()->user()->id, $data)
             ->assertJsonStructure([
                'message',
-               'errors' => [
-                   'role'
-               ]
+               'errors' => ['role']
             ]);
     }
 
@@ -65,9 +63,7 @@ class AddUserRoleTest extends TestCase
         $this->addRole($this->user->id, [])
             ->assertJsonStructure([
                 'message',
-                'errors' => [
-                    'role'
-                ]
+                'errors' => ['role']
             ]);
     }
 
@@ -81,9 +77,7 @@ class AddUserRoleTest extends TestCase
         $this->addRole($this->user->id, $data)
             ->assertJsonStructure([
                 'message',
-                'errors' => [
-                    'role'
-                ]
+                'errors' => ['role']
             ]);
     }
 

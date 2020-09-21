@@ -40,8 +40,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($name)
         ]);
 
-        return redirect('dashboard/categories')
-            ->with('success', 'Category has updated successfully.');
+        return redirect('dashboard/categories')->with('success', 'Category has updated successfully.');
     }
 
     /**
@@ -55,8 +54,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect('dashboard/categories')
-            ->with('success', 'Category has been deleted successfully.');
+        return redirect('dashboard/categories')->with('success', 'Category has been deleted successfully.');
     }
 
     /**
