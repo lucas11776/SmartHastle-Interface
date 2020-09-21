@@ -848,6 +848,11 @@ section {
     margin-bottom: 30px;
 }
 
+.product_image {
+    border: solid 2px #000;
+    border-bottom: none;
+}
+
 .product.home_item_large {
     margin-bottom: 0;
 }
@@ -886,15 +891,12 @@ section {
 }
 
 .product_content {
-    border: solid 2px #dbdbdb;
+    border: solid 2px #000;
 }
 
 .home_item_large .product_content {
     background: rgba(255, 255, 255, 0.2);
-    border-top: solid 2px #dbdbdb;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    border: solid 2px #000;
 }
 
 .product_info {
@@ -1534,8 +1536,9 @@ section {
 }
 
 .footer_about_text {
-    margin-top: 24px;
     padding-right: 50px;
+    position: relative;
+    bottom: 50px;
 }
 
 .footer_menu {

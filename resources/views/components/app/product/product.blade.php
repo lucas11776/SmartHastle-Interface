@@ -11,8 +11,10 @@
             <div>
                 <div>
                     <div class="product_name">
-                        <a href="{{ url($product->slug) }}">
-                            {{ Str::limit($product->name, 30) }}
+                        <a href="{{ url($product->slug) }}" title="{{ $product->name }}">
+                            <small class="font-weight-bolder">
+                                {{ Str::limit($product->name, 20) }}
+                            </small>
                         </a>
                     </div>
                     <div class="product_category">
